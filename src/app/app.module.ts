@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +13,7 @@ import { MyProfilePage } from "../pages/my-profile/my-profile";
 import { MyListingsPage } from "../pages/my-listings/my-listings";
 import { MediaService } from "../services/media.service";
 import { HttpClientModule } from "@angular/common/http";
+import { LoginPage } from "../pages/login/login";
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { HttpClientModule } from "@angular/common/http";
     HomePage,
     ListPage,
     MyProfilePage,
-    MyListingsPage
+    MyListingsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +36,8 @@ import { HttpClientModule } from "@angular/common/http";
     HomePage,
     ListPage,
     MyProfilePage,
-    MyListingsPage
+    MyListingsPage,
+    LoginPage
   ],
   providers: [
     HttpClientModule,

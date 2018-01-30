@@ -2,28 +2,41 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { MyProfilePage } from "../pages/my-profile/my-profile";
 import { MyListingsPage } from "../pages/my-listings/my-listings";
+import { LoginPage } from "../pages/login/login";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
+
+  isLoggedIn = false;
+
+  homePage: any;
 
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public storage: Storage) {
+
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+    this.homePage = { title: 'Home', component: HomePage }
+
     this.pages = [
-      { title: 'My Profile', component: MyProfilePage },
-      { title: 'My Listings', component: MyListingsPage },
+      { title: 'Login', component: LoginPage },
+      { title: "My Profile", component: MyProfilePage },
+      { title: "My Listings", component: MyListingsPage },
     ];
 
   }
@@ -36,14 +49,11 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
-
+    /*
+    Opens any other pages than the home page,
+    which is visible always.
+    */
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
-  }
-
-  openHomePage() {
-    this.nav.setRoot(HomePage);
   }
 }

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginResponse } from '../models/login-response';
-//import { NavController } from 'ionic-angular';
 import { HomePage } from "../pages/home/home";
+import { Storage } from '@ionic/storage';
+import { MyApp } from '../app/app.component';
 
 @Injectable()
 export class MediaService {
 
   rootAPIUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-  constructor(private http: HttpClient, /*private navCtrl: NavController*/) { }
+  constructor(private http: HttpClient,
+              private storage: Storage) { }
 
   register() {
 
@@ -29,7 +31,7 @@ export class MediaService {
 
       console.log('All good in the hood');
 
-      localStorage.setItem('token', loginResponse.token);
+      this.storage.set('token', loginResponse.token);
 
       //this.navCtrl.push(HomePage);
 

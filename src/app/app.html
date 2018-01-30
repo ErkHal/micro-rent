@@ -7,10 +7,20 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item (click)="openHomePage()">Home</button>
-      <div *ngIf="localStorage.token">
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
+      <button menuClose ion-item (click)="openPage(this.homePage)">
+        <ion-icon name="home"></ion-icon> Home
+      </button>
+      <div *ngIf="!this.isLoggedIn">
+        <button menuClose ion-item (click)="openPage(this.pages[0])">
+          <ion-icon name="lock"></ion-icon> Login
+        </button>
+      </div>
+      <div *ngIf="this.isLoggedIn">
+        <button menuClose ion-item (click)="openPage(this.pages[1])">
+          <ion-icon name="person"></ion-icon> {{this.pages[1].title}}
+        </button>
+        <button menuClose ion-item (click)="openPage(this.pages[2])">
+          <ion-icon name="albums"></ion-icon> {{this.pages[2].title}}
         </button>
       </div>
     </ion-list>
