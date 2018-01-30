@@ -1,0 +1,8 @@
+{
+  "name": "micro-rent-proto",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
