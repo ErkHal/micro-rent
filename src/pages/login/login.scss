@@ -5,6 +5,15 @@ page-login {
     font-size: 3rem;
   }
 
+  form {
+    justify-content: center;
+    align-items: center;
+
+    input {
+      align-self: center;
+    }
+  }
+
   .centered {
     text-align: center;
   }
