@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginResponse } from '../models/login-response';
-import { HomePage } from "../pages/home/home";
-import { Storage } from '@ionic/storage';
-import { MyApp } from '../app/app.component';
 import { User } from "../models/user";
 import { RegisterResponse } from "../models/register-response";
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class MediaService {
@@ -33,16 +31,7 @@ export class MediaService {
   //Login user
   login(userCredentials: User) {
 
-    this.http.post<LoginResponse>(this.rootAPIUrl + 'login', userCredentials)
-    .subscribe( loginResponse => {
-
-      console.log('All good in the hood');
-
-      this.storage.set('token', loginResponse.token);
-
-    }, err => {
-      console.log('Something went very wrong. Heres why: ' + err.message);
-    });
+    return this.http.post<LoginResponse>(this.rootAPIUrl + 'login', userCredentials);
   }
 
   //Returns all listings from the API
@@ -51,12 +40,31 @@ export class MediaService {
   }
 
   //Validates the token with the API
-  hasValidToken() {
+  getUserInfo() {
+    console.log('Retrieving data');
+    this.storage.get('token')
+      .then( token => {
 
-    const reqSettings = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
-    };
+        const reqSettings = {
+          headers: new HttpHeaders().set('x-access-token', token)
+        };
+        return this.http.get(this.rootAPIUrl + 'users/user', reqSettings);
 
-    return this.http.get(this.rootAPIUrl + 'users/user', reqSettings);
+      }).catch( err => {
+        return null;
+      });
+    }
+    
+//Checks if the user has a token in local storage
+  userHasToken() {
+    return new Promise((resolve, reject) => {
+      this.storage.get('token')
+      .then( result => {
+        resolve(true);
+      }).catch( err => {
+        console.log("Error validating token: " + err);
+        reject(false);
+      })
+    });
   }
 }

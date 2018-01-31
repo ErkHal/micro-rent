@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MediaService } from '../../services/media.service';
+import { Storage } from '@ionic/storage';
+import { User } from '../../models/user';
 
 /**
  * Generated class for the MyProfilePage page.
@@ -15,11 +18,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userInfo: User;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private mediaService: MediaService,
+              private storage: Storage) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyProfilePage');
-  }
+  ngOnInit() {
 
-}
+    //Check if user has a token, after that verifies token with the API
+      this.mediaService.userHasToken()
+        .then( response => {
+
+          console.log('User has token');
+
+          this.mediaService.getUserInfo()
+            .subscribe( result => {
+              this.userInfo = result;
+            });
+        }).catch( err => {
+          console.log('Error @ my-profile onInit ' + err)
+          this.showInfo = err;
+        });
+    }
+  }

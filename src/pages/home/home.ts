@@ -29,12 +29,14 @@ export class HomePage {
         listing["thumbnail"] = newUrl;
 
       });
-
     });
-  }
 
-  ionViewWillEnter() {
-    
-  }
+    this.mediaService.userHasToken()
+      .then( response => {
+        console.log(response);
+      }).catch( err => {
+        console.log(err);
+      });
 
+  }
 }

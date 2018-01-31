@@ -16,7 +16,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  isLoggedIn = false;
+  isLoggedIn = true;
 
   homePage: any;
 
@@ -49,10 +49,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
-    /*
-    Opens any other pages than the home page,
-    which is visible always.
-    */
+
   openPage(page) {
     this.nav.setRoot(page.component);
   }

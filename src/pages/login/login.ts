@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../models/user";
 import { MediaService } from "../../services/media.service";
-import { HomePage } from "../home/home";
+import { Storage } from '@ionic/storage';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,10 +27,20 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public mediaService: MediaService) {
-  }
+              public mediaService: MediaService,
+              private storage: Storage) { }
 
-  returnHome() {
-    this.navCtrl.push(HomePage);
+  tryLogin(credentials: User) {
+
+    this.mediaService.login(credentials)
+      .subscribe( loginResponse => {
+
+        console.log('User logged in');
+        this.storage.set('token', loginResponse.token);
+        this.navCtrl.setRoot(HomePage);
+
+      }, err => {
+        console.log('Something went very wrong. Heres why: ' + err.message);
+    });
   }
 }
