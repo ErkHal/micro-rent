@@ -10,11 +10,9 @@
       <button menuClose ion-item (click)="openPage(this.homePage)">
         <ion-icon name="home"></ion-icon> Home
       </button>
-      <div *ngIf="!this.isLoggedIn">
         <button menuClose ion-item (click)="openPage(this.pages[0])">
           <ion-icon name="lock"></ion-icon> Login
         </button>
-      </div>
       <div *ngIf="this.isLoggedIn">
         <button menuClose ion-item (click)="openPage(this.pages[1])">
           <ion-icon name="person"></ion-icon> {{this.pages[1].title}}

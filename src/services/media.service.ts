@@ -4,6 +4,7 @@ import { LoginResponse } from '../models/login-response';
 import { User } from "../models/user";
 import { RegisterResponse } from "../models/register-response";
 import { Storage } from '@ionic/storage';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class MediaService {
@@ -40,30 +41,23 @@ export class MediaService {
   }
 
   //Validates the token with the API
-  getUserInfo() {
-    console.log('Retrieving data');
-    this.storage.get('token')
-      .then( token => {
-
-        const reqSettings = {
-          headers: new HttpHeaders().set('x-access-token', token)
-        };
-        return this.http.get(this.rootAPIUrl + 'users/user', reqSettings);
-
-      }).catch( err => {
-        return null;
-      });
+  getUserInfo(token) {
+    console.log("assumed token: " + token);
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', token)
+    };
+    return this.http.get(this.rootAPIUrl + 'users/user', reqSettings)
     }
-    
+
 //Checks if the user has a token in local storage
   userHasToken() {
-    return new Promise((resolve, reject) => {
+    return new Promise( (resolve, reject) => {
       this.storage.get('token')
       .then( result => {
-        resolve(true);
+        resolve(result);
       }).catch( err => {
         console.log("Error validating token: " + err);
-        reject(false);
+        reject(err);
       })
     });
   }

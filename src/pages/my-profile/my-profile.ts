@@ -30,17 +30,15 @@ export class MyProfilePage {
 
     //Check if user has a token, after that verifies token with the API
       this.mediaService.userHasToken()
-        .then( response => {
-
-          console.log('User has token');
-
-          this.mediaService.getUserInfo()
-            .subscribe( result => {
+        .then( result => {
+          console.log("SUPPOSED TO BE A FUCKING TOKEN " + result);
+          this.mediaService.getUserInfo(result)
+            .subscribe( (result: User) => {
+              console.log(result);
               this.userInfo = result;
             });
         }).catch( err => {
-          console.log('Error @ my-profile onInit ' + err)
-          this.showInfo = err;
+          console.log(err);
         });
     }
   }
