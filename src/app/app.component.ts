@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { MyProfilePage } from "../pages/my-profile/my-profile";
 import { MyListingsPage } from "../pages/my-listings/my-listings";
 import { LoginPage } from "../pages/login/login";
+import { MediaService } from "../services/media.service";
 
 @Component({
   templateUrl: 'app.html'
@@ -15,8 +16,6 @@ import { LoginPage } from "../pages/login/login";
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-
-  isLoggedIn = true;
 
   homePage: any;
 
@@ -27,7 +26,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public storage: Storage) {
+              public storage: Storage,
+              public mediaService: MediaService) {
 
     this.initializeApp();
 

@@ -38,6 +38,7 @@ export class LoginPage {
         console.log('User logged in');
         this.storage.set('token', loginResponse.token);
         this.navCtrl.setRoot(HomePage);
+        this.mediaService.isLoggedIn = true;
 
       }, err => {
         console.log('Something went very wrong. Heres why: ' + err.message);

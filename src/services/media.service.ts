@@ -9,6 +9,8 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class MediaService {
 
+  isLoggedIn = false;
+
   rootAPIUrl = 'http://media.mw.metropolia.fi/wbma/';
 
   constructor(private http: HttpClient,
