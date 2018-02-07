@@ -18,27 +18,23 @@ import { User } from '../../models/user';
 })
 export class MyProfilePage {
 
-  userInfo: User;
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private mediaService: MediaService,
+              public mediaService: MediaService,
               private storage: Storage) {
   }
 
   ngOnInit() {
 
     //Check if user has a token, after that verifies token with the API
-      this.mediaService.userHasToken()
-        .then( result => {
-          console.log("SUPPOSED TO BE A FUCKING TOKEN " + result);
-          this.mediaService.getUserInfo(result)
-            .subscribe( (result: User) => {
-              console.log(result);
-              this.userInfo = result;
-            });
-        }).catch( err => {
-          console.log(err);
+    const userToken = this.mediaService.userHasToken();
+      if(userToken) {
+        console.log('@my-profile: User has token: ' + userToken);
+        this.mediaService.getUserInfo(userToken)
+          .subscribe( (result: User) => {
+            console.log(result);
+            this.mediaService.userInfo = result;
         });
+      }
     }
   }

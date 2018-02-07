@@ -13,6 +13,8 @@ import { MyListingsPage } from "../pages/my-listings/my-listings";
 import { MediaService } from "../services/media.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginPage } from "../pages/login/login";
+import { LogoutPage } from "../pages/logout/logout";
+import { PipesModule } from "../pipes/pipes.module";
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { LoginPage } from "../pages/login/login";
     HomePage,
     MyProfilePage,
     MyListingsPage,
-    LoginPage
+    LoginPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +38,8 @@ import { LoginPage } from "../pages/login/login";
     HomePage,
     MyProfilePage,
     MyListingsPage,
-    LoginPage
+    LoginPage,
+    LogoutPage
   ],
   providers: [
     HttpClientModule,

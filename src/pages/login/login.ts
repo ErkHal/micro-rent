@@ -36,10 +36,12 @@ export class LoginPage {
       .subscribe( loginResponse => {
 
         console.log('User logged in');
-        this.storage.set('token', loginResponse.token);
+        localStorage.setItem('token', loginResponse.token);
         this.navCtrl.setRoot(HomePage);
         this.mediaService.isLoggedIn = true;
 
+        const userData: User = loginResponse['user'];
+        this.mediaService.userInfo = userData;
       }, err => {
         console.log('Something went very wrong. Heres why: ' + err.message);
     });

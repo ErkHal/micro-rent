@@ -11,7 +11,9 @@ export class MediaService {
 
   isLoggedIn = false;
 
-  rootAPIUrl = 'http://media.mw.metropolia.fi/wbma/';
+  userInfo: User;
+
+  rootUrl = 'http://media.mw.metropolia.fi/wbma/';
 
   constructor(private http: HttpClient,
               private storage: Storage) { }
@@ -19,7 +21,7 @@ export class MediaService {
   //Register a new user
   register(newUser: User) {
 
-    this.http.post(this.rootAPIUrl + 'users', newUser)
+    this.http.post(this.rootUrl + 'users', newUser)
       .subscribe( (response: RegisterResponse) => {
         //Login user after registering
         this.login(newUser);
@@ -34,33 +36,36 @@ export class MediaService {
   //Login user
   login(userCredentials: User) {
 
-    return this.http.post<LoginResponse>(this.rootAPIUrl + 'login', userCredentials);
+    return this.http.post<LoginResponse>(this.rootUrl + 'login', userCredentials);
   }
 
   //Returns all listings from the API
   getAllListings() {
-    return this.http.get(this.rootAPIUrl + 'media');
+    return this.http.get(this.rootUrl + 'media');
   }
+
+  getUserListings(id: number) {
+    console.log('Fetching listings of user with id: ' + id)
+    return this.http.get(this.rootUrl + 'media/user/' + id);
+  }
+
+  //Logout user
+  logout() {
+    console.log('logging out...');
+    localStorage.removeItem('token');
+}
 
   //Validates the token with the API
   getUserInfo(token) {
-    console.log("assumed token: " + token);
+
     const reqSettings = {
       headers: new HttpHeaders().set('x-access-token', token)
     };
-    return this.http.get(this.rootAPIUrl + 'users/user', reqSettings)
+    return this.http.get(this.rootUrl + 'users/user', reqSettings)
     }
 
 //Checks if the user has a token in local storage
   userHasToken() {
-    return new Promise( (resolve, reject) => {
-      this.storage.get('token')
-      .then( result => {
-        resolve(result);
-      }).catch( err => {
-        console.log("Error validating token: " + err);
-        reject(err);
-      })
-    });
+    return localStorage.getItem('token');
   }
 }

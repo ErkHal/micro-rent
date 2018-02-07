@@ -8,20 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="userInfo" *ngIf="this.userInfo">
+  <div class="userInfo" *ngIf="this.mediaService.isLoggedIn">
     <label for="username"> Username </label>
     <h4 id="username">
-      {{ this.userInfo.username }}
+      {{ this.mediaService.userInfo.username }}
     </h4>
     <br />
     <label for="email"> Email </label>
       <h4 id="email">
-        {{ this.userInfo.email }}
+        {{ this.mediaService.userInfo.email }}
       </h4>
     <br />
     <label for="fullName"> Full Name </label>
       <h4 id="fullName">
-        {{ this.userInfo.full_name }}
+        {{ this.mediaService.userInfo.full_name }}
       </h4>
   </div>
 </ion-content>

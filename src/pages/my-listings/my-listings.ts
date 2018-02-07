@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MediaService } from "../../services/media.service";
 
 /**
  * Generated class for the MyListingsPage page.
@@ -15,11 +16,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyListingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userListings: any;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public mediaService: MediaService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyListingsPage');
+    this.mediaService.getUserListings(this.mediaService.userInfo.user_id)
+      .subscribe( result => {
+        console.log('got listings !');
+        console.log(result)
+        this.userListings = result;
+      }, err => {
+        console.log(err);
+        this.userListings = [];
+      })
   }
 
 }

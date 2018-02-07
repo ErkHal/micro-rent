@@ -9,6 +9,8 @@ import { MyProfilePage } from "../pages/my-profile/my-profile";
 import { MyListingsPage } from "../pages/my-listings/my-listings";
 import { LoginPage } from "../pages/login/login";
 import { MediaService } from "../services/media.service";
+import { LogoutPage } from "../pages/logout/logout";
+import { User } from "../models/user";
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +39,7 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       { title: "My Profile", component: MyProfilePage },
       { title: "My Listings", component: MyListingsPage },
+      { title: "Logout", component: LogoutPage }
     ];
 
   }
@@ -46,7 +49,16 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
+
+      this.mediaService.getUserInfo(this.mediaService.userHasToken())
+        .subscribe((response: User) => {
+          console.log(response)
+          this.mediaService.userInfo = response;
+          this.mediaService.isLoggedIn = true;
+        }, err => {
+          this.mediaService.isLoggedIn = false;
+        })
     });
   }
 
