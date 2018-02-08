@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header color="primary">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-<div *ngIf="this.userListings.length === 0">
+<div *ngIf="!this.userListings">
   <p>
     You don't have any listings yet !
   </p>

@@ -30,14 +30,5 @@ export class HomePage {
 
       });
     });
-
-    console.log("Home user has token: " + this.mediaService.userHasToken())
-    /*this.mediaService.userHasTokenAsync()
-      .then( response => {
-        console.log(response);
-      }).catch( err => {
-        console.log(err);
-      }); */
-
   }
 }

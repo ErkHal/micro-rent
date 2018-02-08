@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
 
@@ -16,23 +16,30 @@ import { MediaService } from "../../services/media.service";
 })
 export class MyListingsPage {
 
-  userListings: any;
+  userListings: any = null;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public mediaService: MediaService) {
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
+
     this.mediaService.getUserListings(this.mediaService.userInfo.user_id)
       .subscribe( result => {
         console.log('got listings !');
-        console.log(result)
-        this.userListings = result;
+        if(result['length'] >= 1) {
+          this.userListings = result;
+        } else {
+          this.userListings = null;
+        }
       }, err => {
         console.log(err);
-        this.userListings = [];
+        this.userListings = null;
       })
+  }
+
+  ionViewDidLoad() {
   }
 
 }

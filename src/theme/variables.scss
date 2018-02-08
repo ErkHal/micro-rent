@@ -33,12 +33,23 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+/*
 $colors: (
   primary:    #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
+); */
+
+//Theme colors for Micro-Rent
+//danger color is taken elsewhere
+$colors: (
+  primary:    #008080,
+  secondary:  #0F368F,
+  danger:     #d63013,
+  light:      #D58E00,
+  dark:       #D56100
 );
 
 
