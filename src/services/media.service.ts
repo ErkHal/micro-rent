@@ -49,6 +49,11 @@ export class MediaService {
     return this.http.get(this.rootUrl + 'media/user/' + id);
   }
 
+  getSingleListing(file_id: number) {
+    console.log('fetching media with id: ' + file_id);
+    return this.http.get(this.rootUrl + 'media/' + file_id);
+  }
+
   //Logout user
   logout() {
     console.log('logging out...');
@@ -63,6 +68,18 @@ export class MediaService {
     };
     return this.http.get(this.rootUrl + 'users/user', reqSettings)
     }
+
+  //Gets the renter's information with id
+  getContactInformation(id: number) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token',
+                                    localStorage.getItem('token'))
+    };
+
+    return this.http.get(this.rootUrl + 'users/' + id, reqSettings);
+
+  }
 
 //Checks if the user has a token in local storage
   userHasToken() {

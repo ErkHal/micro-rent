@@ -1,0 +1,11 @@
+<ion-card>
+  <a (click)="openListing(listing.file_id)"><img [src]="mediaUrl + (listing.filename | thumbnail: 'medium')"/></a>
+  <ion-card-content>
+    <ion-card-title>
+      {{listing.title}}
+    </ion-card-title>
+    <p>
+      {{listing.description}}
+    </p>
+  </ion-card-content>
+</ion-card>

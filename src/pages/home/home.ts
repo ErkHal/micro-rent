@@ -11,8 +11,6 @@ export class HomePage {
 
   listings: Listing[];
 
-  mediaUrl = "http://media.mw.metropolia.fi/wbma/uploads/";
-
   constructor(public navCtrl: NavController, private mediaService: MediaService) {
 
   }
@@ -21,14 +19,7 @@ export class HomePage {
     this.mediaService.getAllListings()
     .subscribe( (listingsArr: Listing[]) => {
       this.listings = listingsArr;
-
-      this.listings.forEach( listing => {
-        const oldUrl = listing.filename.split('.');
-        const newUrl = oldUrl[0] + '-tn320.png';
-
-        listing["thumbnail"] = newUrl;
-
-      });
+      
     });
   }
 }

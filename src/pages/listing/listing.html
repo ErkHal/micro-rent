@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Listing</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+ <div *ngIf="this.listingInfo">
+
+  <ion-card>
+    <img [src]="uploadsUrl + this.listingInfo.filename"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{this.listingInfo.title}}
+      </ion-card-title>
+      <h5> Price for one day: 5e </h5>
+      <p>
+        {{this.listingInfo.description}}
+      </p>
+      <div *ngIf="this.mediaService.isLoggedIn">
+        <button (click)="openEmailApp()" ion-button clear small color="danger" icon-start>
+           <ion-icon name='checkbox-outline'></ion-icon>
+           I need this
+        </button>
+      </div>
+      <div *ngIf="!this.mediaService.isLoggedIn">
+        <p>
+          Please log in to get contact information !
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

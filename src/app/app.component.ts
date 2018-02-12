@@ -11,6 +11,7 @@ import { LoginPage } from "../pages/login/login";
 import { MediaService } from "../services/media.service";
 import { LogoutPage } from "../pages/logout/logout";
 import { User } from "../models/user";
+import { ListingPage } from "../pages/listing/listing";
 
 @Component({
   templateUrl: 'app.html'
@@ -64,5 +65,11 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+  openListing(id: string) {
+    this.nav.push(ListingPage, {
+      mediaParams: id
+    });
   }
 }
