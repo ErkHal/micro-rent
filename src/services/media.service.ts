@@ -44,11 +44,13 @@ export class MediaService {
     return this.http.get(this.rootUrl + 'media');
   }
 
+  //Get listingsof a single user
   getUserListings(id: number) {
     console.log('Fetching listings of user with id: ' + id)
     return this.http.get(this.rootUrl + 'media/user/' + id);
   }
 
+  //Get a single listing with id
   getSingleListing(file_id: number) {
     console.log('fetching media with id: ' + file_id);
     return this.http.get(this.rootUrl + 'media/' + file_id);
