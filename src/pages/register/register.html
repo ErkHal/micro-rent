@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+      <ion-card-header>
+        Register
+      </ion-card-header>
+      <br />
+      <ion-card-content>
+        <form>
+          <div class="form-group">
+          <input class="form-control" [(ngModel)]="this.register.username" name="username"
+                  class="centered" ion-item
+                  type="text" placeholder="Username" required/>
+          <br />
+          <input class="form-control" [(ngModel)]="this.register.password" name="password"
+                  class="centered" ion-item
+                  type="password" placeholder="*******" required/>
+          <br />
+          <input class="form-control" [(ngModel)]="this.register.password" name="password"
+                  class="centered" ion-item
+                  type="password" placeholder="*******" required/>
+          <br />
+          <input class="form-control" [(ngModel)]="this.register.email" name="email"
+                    class="centered" ion-item
+                    type="email" placeholder="email@example.fi"/>
+            <br />
+            </div>
+          <button class="centered" ion-button
+                  (click)="this.mediaService.register(this.register)">
+            Register
+          </button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

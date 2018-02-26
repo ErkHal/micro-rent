@@ -16,6 +16,7 @@ import { LogoutPage } from "../pages/logout/logout";
 import { PipesModule } from "../pipes/pipes.module";
 import { ListingPage } from "../pages/listing/listing";
 import { ComponentsModule } from "../components/components.module";
+import { RegisterPage } from "../pages/register/register";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ComponentsModule } from "../components/components.module";
     MyListingsPage,
     LoginPage,
     LogoutPage,
-    ListingPage
+    ListingPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { ComponentsModule } from "../components/components.module";
     MyListingsPage,
     LoginPage,
     LogoutPage,
-    ListingPage
+    ListingPage,
+    RegisterPage,
   ],
   providers: [
     HttpClientModule,

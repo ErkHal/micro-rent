@@ -12,6 +12,7 @@ import { MediaService } from "../services/media.service";
 import { LogoutPage } from "../pages/logout/logout";
 import { User } from "../models/user";
 import { ListingPage } from "../pages/listing/listing";
+import { RegisterPage } from "../pages/register/register";
 
 @Component({
   templateUrl: 'app.html'
@@ -40,7 +41,8 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       { title: "My Profile", component: MyProfilePage },
       { title: "My Listings", component: MyListingsPage },
-      { title: "Logout", component: LogoutPage }
+      { title: "Logout", component: LogoutPage },
+      { title: "Register", component: RegisterPage},
     ];
 
   }
