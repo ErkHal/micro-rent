@@ -21,9 +21,23 @@
 
   li {
     width: 30%;
+    text-align: center;
   }
 }
 
-ion-header {
-  background: color($colors, primary);
+ion-navbar {
+
+  .bar-button-default-md {
+    color: #FFF;
+
+  }
+
+  .toolbar-title {
+    color: #FFF;
+  }
+
+  .toolbar-background {
+    background-color: color($colors, primary);
+
+  }
 }
