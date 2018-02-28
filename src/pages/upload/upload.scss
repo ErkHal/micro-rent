@@ -1,0 +1,31 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+ion-card {
+
+  text-align: center;
+
+  form {
+
+    ion-input ion-textarea {
+      padding: 1rem;
+      margin: 1rem;
+
+    }
+
+    #file {
+      padding: 1rem;
+
+    }
+
+    #description {
+      height: 10rem;
+      text-overflow: ellipsis;
+    }
+  }
+}

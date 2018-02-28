@@ -33,6 +33,16 @@ export class MediaService {
       });
   }
 
+  //Uploads new media to server
+  upload(formData: FormData) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+
+    return this.http.post(this.rootUrl + 'media', formData, reqSettings);
+  }
+
   //Login user
   login(userCredentials: User) {
 

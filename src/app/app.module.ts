@@ -17,6 +17,9 @@ import { PipesModule } from "../pipes/pipes.module";
 import { ListingPage } from "../pages/listing/listing";
 import { ComponentsModule } from "../components/components.module";
 import { RegisterPage } from "../pages/register/register";
+import { UploadPage } from "../pages/upload/upload";
+import {Camera, CameraOptions} from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { RegisterPage } from "../pages/register/register";
     LoginPage,
     LogoutPage,
     ListingPage,
-    RegisterPage
+    RegisterPage,
+    UploadPage,
   ],
   imports: [
     BrowserModule,
@@ -47,13 +51,16 @@ import { RegisterPage } from "../pages/register/register";
     LogoutPage,
     ListingPage,
     RegisterPage,
+    UploadPage,
   ],
   providers: [
     HttpClientModule,
     StatusBar,
     SplashScreen,
     MediaService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    File,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

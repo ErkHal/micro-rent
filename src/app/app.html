@@ -14,8 +14,8 @@
          <button menuClose ion-item no-lines color="dark" (click)="openPage(this.pages[0])">
            <ion-icon name="lock"></ion-icon> {{ this.pages[0].title }}
          </button>
-           <button menuClose ion-item no-lines color="dark" (click)="openPage(this.pages[4])">
-             <ion-icon name="lock"></ion-icon> {{ this.pages[4].title }}
+           <button menuClose ion-item no-lines color="light" (click)="openPage(this.pages[4])">
+             <ion-icon name="person-add"></ion-icon> {{ this.pages[4].title }}
            </button>
        </div>
       <div *ngIf="this.mediaService.isLoggedIn">
@@ -25,7 +25,10 @@
         <button menuClose ion-item no-lines color="dark" (click)="openPage(this.pages[2])">
           <ion-icon name="albums"></ion-icon> {{ this.pages[2].title }}
         </button>
-        <button menuClose ion-item no-lines color="danger" (click)="openPage(this.pages[3])">
+        <button menuClose ion-item no-lines color="danger" (click)="openPage(this.pages[5])">
+          <ion-icon name="add"></ion-icon> {{ this.pages[5].title }}
+        </button>
+        <button menuClose ion-item no-lines color="secondary" (click)="openPage(this.pages[3])">
           <ion-icon name="close"></ion-icon>  {{ this.pages[3].title }}
         </button>
       </div>

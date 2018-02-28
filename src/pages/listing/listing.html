@@ -17,12 +17,14 @@
       <ion-card-title>
         {{this.listingInfo.title}}
       </ion-card-title>
-      <h5> Price for one day: 5e </h5>
-      <p>
-        {{this.listingInfo.description}}
-      </p>
+      <br/>
+      <h2> €/Day: {{ (this.listingInfo.description | price) }} </h2>
+      <br/>
+      <h4>
+        {{ (this.listingInfo.description | description) }}
+      </h4>
       <div *ngIf="this.mediaService.isLoggedIn">
-        <button (click)="openEmailApp()" ion-button clear small color="danger" icon-start>
+        <button (click)="openEmailApp()" ion-button clear small color="light" icon-start>
            <ion-icon name='checkbox-outline'></ion-icon>
            I need this
         </button>

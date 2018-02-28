@@ -13,6 +13,7 @@ import { LogoutPage } from "../pages/logout/logout";
 import { User } from "../models/user";
 import { ListingPage } from "../pages/listing/listing";
 import { RegisterPage } from "../pages/register/register";
+import { UploadPage } from "../pages/upload/upload";
 
 @Component({
   templateUrl: 'app.html'
@@ -43,6 +44,7 @@ export class MyApp {
       { title: "My Listings", component: MyListingsPage },
       { title: "Logout", component: LogoutPage },
       { title: "Register", component: RegisterPage},
+      { title: "New Listing", component: UploadPage },
     ];
 
   }

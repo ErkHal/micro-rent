@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create Listing</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!this.canUpload">
+    <div class="alert alert-danger">
+        You need to logged in to upload media !
+    </div>
+  </div>
+  <ion-card>
+    <div *ngIf="this.canUpload">
+        <ion-card-title> UPLOAD </ion-card-title>
+        <ion-card-content>
+
+          <div *ngIf="this.listingImageURI">
+            <img [src]="this.listingImageURI"/>
+          </div>
+          <button ion-button id="file" class="btn btn-default"
+                  (click)="takePhoto()">
+                  Upload photo
+          </button>
+          <div [hidden]="!formData.file"
+                class="alert alert-danger">
+                  Photo is required
+          </div>
+
+          <form #uploadForm="ngForm">
+
+            <br/>
+            <div class="form-group">
+              <ion-input class="form-control" type="text" [(ngModel)]="uploadForm.title"
+                      placeholder="Title" name="title" #title="ngModel" required>
+              </ion-input>
+              <div [hidden]="title.valid || title.pristine"
+                    class="alert alert-danger">
+                      Title is required !
+              </div>
+              <br />
+              <ion-input class="form-control" type="number" [(ngModel)]="uploadForm.price"
+                      placeholder="Price(€)" #name="ngModel"
+                      name="price" required>
+              </ion-input>
+              <div [hidden]="title.valid || title.pristine"
+                    class="alert alert-danger">
+                    Price is required !
+              </div>
+              <br />
+              <ion-textarea cols="25" rows="7" id="description" class="form-control"
+                        type="text" [(ngModel)]="uploadForm.description"
+                        placeholder="Description" #name="ngModel"
+                        name="description" required></ion-textarea>
+              <div [hidden]="title.valid || title.pristine"
+                    class="alert alert-danger">
+                    Description is required !
+              </div>
+            </div>
+            <br/>
+            <button ion-button (click)="onSubmit(uploadForm)"
+             class="btn btn-success" [disabled]="!uploadForm.form.valid">Create Listing</button>
+
+          </form>
+        </ion-card-content>
+      </div>
+  </ion-card>
+</ion-content>
