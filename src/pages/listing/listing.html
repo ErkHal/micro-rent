@@ -9,7 +9,7 @@
 
 
 <ion-content padding>
- <div *ngIf="this.listingInfo">
+  <div *ngIf="this.listingInfo">
 
   <ion-card>
     <img [src]="uploadsUrl + this.listingInfo.filename"/>
@@ -24,7 +24,7 @@
         {{ (this.listingInfo.description | description) }}
       </h4>
       <div *ngIf="this.mediaService.isLoggedIn">
-        <button (click)="openEmailApp()" ion-button clear small color="light" icon-start>
+        <button (click)="openEmailApp()" ion-button clear small color="primary" icon-start>
            <ion-icon name='checkbox-outline'></ion-icon>
            I need this
         </button>

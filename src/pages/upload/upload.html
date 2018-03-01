@@ -22,10 +22,14 @@
             <img [src]="this.listingImageURL"/>
           </div>
           <button ion-button id="file" class="btn btn-default"
-                  (click)="takePhoto()">
-                  Upload photo
+                  (click)="takePhoto()" [disabled]="this.listingImageURL">
+                  Take photo
           </button>
-          <div [hidden]="!formData.file"
+          <br/>
+          <div *ngIf="this.listingImageURL">
+            <ion-icon (click)="removePhoto()" name="trash" color="danger"></ion-icon>
+          </div>
+          <div [hidden]="this.listingImageURL"
                 class="alert alert-danger">
                   Photo is required
           </div>
@@ -61,9 +65,11 @@
               </div>
             </div>
             <br/>
+            <!-- Loading icon, appears when create button is pressed -->
             <div *ngIf="this.loading">
-              <ion-spinner></ion-spinner>
+              <ion-spinner name="dots" color="primary"></ion-spinner>
             </div>
+            <br/>
             <button ion-button (click)="onSubmit(uploadForm)"
              class="btn btn-success" [disabled]="!uploadForm.form.valid">Create Listing</button>
 

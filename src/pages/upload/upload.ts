@@ -75,6 +75,13 @@ export class UploadPage implements OnInit {
       }).catch(err => console.log(err));
   }
 
+  //Removes photo taken by user
+  removePhoto() {
+    this.listingImageURL = "";
+    this.formData.delete('file');
+    console.log(this.formData.get('file'));
+  }
+
   dataURLtoBlob(dataURI) {
   var byteString = atob(dataURI.split(',')[1]);
   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
@@ -103,7 +110,7 @@ export class UploadPage implements OnInit {
       console.log('Media uploaded');
       this.loading = true;
       this.navCtrl.setRoot(HomePage);
-      this.loading = false;
+      //this.loading = false;
 
       }, (err) => {
         console.log('Something went wrong');
