@@ -10,6 +10,14 @@ ion-card {
 
   text-align: center;
 
+  .icon-md {
+    font-size: 5rem;
+  }
+
+  .icon-lg {
+    zoom:3.0;
+  }
+
   form {
 
     ion-input ion-textarea {

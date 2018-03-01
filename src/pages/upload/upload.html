@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="menu-new-listing">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -26,9 +26,9 @@
                   Take photo
           </button>
           <br/>
-          <div *ngIf="this.listingImageURL">
-            <ion-icon (click)="removePhoto()" name="trash" color="danger"></ion-icon>
-          </div>
+          <!--<div *ngIf="this.listingImageURL"> -->
+            <ion-icon (click)="removePhoto()" class="icon-md" name="trash" md="md-trash" color="danger"></ion-icon>
+          <!--</div> -->
           <div [hidden]="this.listingImageURL"
                 class="alert alert-danger">
                   Photo is required
@@ -66,9 +66,9 @@
             </div>
             <br/>
             <!-- Loading icon, appears when create button is pressed -->
-            <div *ngIf="this.loading">
-              <ion-spinner name="dots" color="primary"></ion-spinner>
-            </div>
+            <!--<div *ngIf="this.loading"> -->
+              <ion-spinner class="icon-lg" name="dots" color="primary"></ion-spinner>
+            <!-- </div> -->
             <br/>
             <button ion-button (click)="onSubmit(uploadForm)"
              class="btn btn-success" [disabled]="!uploadForm.form.valid">Create Listing</button>

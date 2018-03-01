@@ -12,6 +12,10 @@ export class DescriptionPipe implements PipeTransform {
 
   transform(description: string) {
 
-    return description.split('|', 2)[1];
+    try {
+      return description.split('|', 2)[1];
+    } catch(err) {
+      return "Couldn't find desciption";
+    }
   }
 }
