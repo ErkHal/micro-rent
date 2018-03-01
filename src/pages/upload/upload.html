@@ -18,8 +18,8 @@
         <ion-card-title> UPLOAD </ion-card-title>
         <ion-card-content>
 
-          <div *ngIf="this.listingImageURI">
-            <img [src]="this.listingImageURI"/>
+          <div *ngIf="this.listingImageURL">
+            <img [src]="this.listingImageURL"/>
           </div>
           <button ion-button id="file" class="btn btn-default"
                   (click)="takePhoto()">
@@ -61,6 +61,9 @@
               </div>
             </div>
             <br/>
+            <div *ngIf="this.loading">
+              <ion-spinner></ion-spinner>
+            </div>
             <button ion-button (click)="onSubmit(uploadForm)"
              class="btn btn-success" [disabled]="!uploadForm.form.valid">Create Listing</button>
 

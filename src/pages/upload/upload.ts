@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MediaService } from "../../services/media.service";
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {File, FileEntry} from '@ionic-native/file';
+import { NavController, NavParams } from "ionic-angular";
+import { HomePage } from "../home/home";
 
 /*
 <input ion-button id="file" class="btn btn-default" (click)="takePhoto()"
@@ -24,9 +26,13 @@ export class UploadPage implements OnInit {
 
   canUpload = false;
 
-  listingImageURI: string;
+  loading = false;
 
-  constructor(private mediaService: MediaService,
+  listingImageURL: string;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private mediaService: MediaService,
               private camera: Camera,
               private file: File) { }
 
@@ -58,9 +64,9 @@ export class UploadPage implements OnInit {
 
       imageData = 'data:image/jpeg;base64,' + imageData;
 
-        this.listingImageURI = imageData;
+        this.listingImageURL = imageData;
 
-        const imgBlob = this.dataURItoBlob(imageData);
+        const imgBlob = this.dataURLtoBlob(imageData);
 
         console.log('inside takephoto');
         this.formData.append('file', imgBlob);
@@ -69,7 +75,7 @@ export class UploadPage implements OnInit {
       }).catch(err => console.log(err));
   }
 
-  dataURItoBlob(dataURI) {
+  dataURLtoBlob(dataURI) {
   var byteString = atob(dataURI.split(',')[1]);
   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
   var ab = new ArrayBuffer(byteString.length);
@@ -95,6 +101,10 @@ export class UploadPage implements OnInit {
 
     this.mediaService.upload(encodedForm).subscribe( result => {
       console.log('Media uploaded');
+      this.loading = true;
+      this.navCtrl.setRoot(HomePage);
+      this.loading = false;
+
       }, (err) => {
         console.log('Something went wrong');
         console.log(err);
@@ -107,6 +117,11 @@ export class UploadPage implements OnInit {
     console.log("inside encodingz");
     console.log(form.get('price'));
 
+    /*
+    All data to be encoded. Add more entries if you need more data
+    These entries will be appended to the front of the description
+    and separated with a pipe ( | ) symbol.
+    */
     const jsonPrice = {
       "price": form.get('price')
     };

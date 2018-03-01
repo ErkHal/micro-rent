@@ -16,7 +16,7 @@ export class PricePipe implements PipeTransform {
 
     const listingInfo = JSON.parse(description.split('|')[0]);
 
-    console.log(JSON.stringify(listingInfo));
+    //console.log(JSON.stringify(listingInfo));
 
     return listingInfo.price;
 
