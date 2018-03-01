@@ -12,7 +12,17 @@ export class PricePipe implements PipeTransform {
 
   transform(description: string) {
 
-    //Splits the second match in the reqexpArray so it return only the price
-    return description.match('\{(.*?)\}')[0].split(':"')[1].split('"}')[0];
+    try {
+
+    const listingInfo = JSON.parse(description.split('|')[0]);
+
+    console.log(JSON.stringify(listingInfo));
+
+    return listingInfo.price;
+
+  } catch(err) {
+    console.log(err);
+    return 'Couldnt find the price !';
+  }
   }
 }

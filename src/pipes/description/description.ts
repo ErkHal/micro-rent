@@ -12,6 +12,6 @@ export class DescriptionPipe implements PipeTransform {
 
   transform(description: string) {
 
-    return description.split('}')[1];
+    return description.split('|', 2)[1];
   }
 }

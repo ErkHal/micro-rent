@@ -111,7 +111,7 @@ export class UploadPage implements OnInit {
       "price": form.get('price')
     };
 
-    const descr = JSON.stringify(jsonPrice) + form.get('description');
+    const descr = JSON.stringify(jsonPrice) + '|' + form.get('description');
 
     form.delete('price');
     form.set('description', descr);
