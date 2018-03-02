@@ -20,6 +20,7 @@ import { RegisterPage } from "../pages/register/register";
 import { UploadPage } from "../pages/upload/upload";
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { File } from '@ionic-native/file';
     MediaService,
     Camera,
     File,
+    EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

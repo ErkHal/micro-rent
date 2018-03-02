@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
+import { EmailComposer } from "@ionic-native/email-composer";
+import { User } from "../../models/user";
 
 @IonicPage()
 @Component({
@@ -17,7 +19,8 @@ export class ListingPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private mediaService: MediaService) {
+              private mediaService: MediaService,
+              private emailComposer: EmailComposer) {
   }
 
   ngOnInit() {
@@ -47,7 +50,34 @@ export class ListingPage {
       })
   }
 
+  /* Opens the default email application in the device
+    and passes the email template to it, including
+    the lister contact information retrieved from the API,
+    and a default message.
+  */
   openEmailApp() {
-    console.log(this.userInfo.email);
+
+    let emailAddr: string;
+
+    this.mediaService.getContactInformation(
+      this.listingInfo.user_id
+    ).subscribe( (userInfo: User) => {
+
+      emailAddr = userInfo.email;
+
+      let email = {
+        to: emailAddr,
+        subject: "MicroRent: I want to rent your listing !",
+        body: 'Hey ! I am interested in your listing: '
+                + this.listingInfo.title + ', lets talk about the details !',
+        isHtml: true
+      };
+      //Open email app
+      this.emailComposer.open(email);
+
+    }, err => {
+      console.log("Didn't find contact information with id: "
+                  + this.listingInfo.user_id);
+    });
   }
 }
