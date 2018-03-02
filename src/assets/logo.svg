@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 744.09448819 1052.3622047"
+   height="297mm"
+   width="210mm">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <rect
+       y="258.07648"
+       x="37.142857"
+       height="354.28571"
+       width="680"
+       id="rect3336"
+       style="fill:#008080;fill-opacity:0;stroke:#008080;stroke-opacity:0" />
+    <rect
+       y="309.50507"
+       x="14.285714"
+       height="280"
+       width="717.14288"
+       id="rect4140"
+       style="fill:#008080;fill-opacity:1;stroke:#008080;stroke-opacity:0" />
+    <flowRoot
+       style="fill:#ffffff;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;"
+       id="flowRoot4142"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4144"><rect
+           style="fill:#ffffff;fill-opacity:1;"
+           y="352.36221"
+           x="48.57143"
+           height="200"
+           width="660"
+           id="rect4146" /></flowRegion><flowPara
+         id="flowPara4148" /></flowRoot>    <flowRoot
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Montserrat;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Montserrat;font-stretch:normal;font-variant:normal;"
+       id="flowRoot4150"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4152"><rect
+           style="-inkscape-font-specification:Montserrat;font-family:Montserrat;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
+           y="335.21936"
+           x="37.142857"
+           height="214.28572"
+           width="680"
+           id="rect4154" /></flowRegion><flowPara
+         id="flowPara4156" /></flowRoot>    <flowRoot
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:70px;line-height:125%;letter-spacing:0px;word-spacing:0px;"
+       id="flowRoot4158"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4160"><rect
+           style="font-size:70px;"
+           y="340.93362"
+           x="34.285713"
+           height="208.57143"
+           width="680"
+           id="rect4162" /></flowRegion><flowPara
+         id="flowPara4164" /></flowRoot>    <text
+       id="text4166"
+       y="406.64792"
+       x="185.71429"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         y="406.64792"
+         x="185.71429"
+         id="tspan4168" /></text>
+    <text
+       transform="scale(0.99220898,1.0078522)"
+       id="text4170"
+       y="489.14859"
+       x="21.867847"
+       style="font-style:normal;font-weight:normal;font-size:29.92038345px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:134.64172363px;font-family:Montserrat;-inkscape-font-specification:Montserrat;fill:#ffffff;fill-opacity:1"
+         y="489.14859"
+         x="21.867847"
+         id="tspan4172">MicroRent</tspan></text>
+  </g>
+</svg>

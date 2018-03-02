@@ -11,12 +11,22 @@ export class HomePage {
 
   listings: Listing[];
 
+  splash = true;
+
   constructor(public navCtrl: NavController, private mediaService: MediaService) {
 
   }
 
   ngOnInit() {
+
     this.loadContent();
+
+    if(sessionStorage.getItem('splashDisplayed') != 'true') {
+      setTimeout(() => this.splash = false, 3000);
+      sessionStorage.setItem('splashDisplayed', 'true');
+    } else {
+      this.splash = false;
+    }
   }
 
   loadContent(refresher?: any) {
