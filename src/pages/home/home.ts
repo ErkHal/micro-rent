@@ -21,14 +21,16 @@ export class HomePage {
 
     this.loadContent();
 
+    //Displays splash screen unless it's already displayed once.
     if(sessionStorage.getItem('splashDisplayed') != 'true') {
-      setTimeout(() => this.splash = false, 3000);
+      setTimeout(() => this.splash = false, 4000);
       sessionStorage.setItem('splashDisplayed', 'true');
     } else {
       this.splash = false;
     }
   }
 
+  //Fetches newest content from API
   loadContent(refresher?: any) {
     this.mediaService.getAllListings()
     .subscribe( (listingsArr: Listing[]) => {
@@ -42,6 +44,7 @@ export class HomePage {
     });
   }
 
+  //Fired when user swipes down to refresh home page
   refreshHome(refresher) {
     this.loadContent(refresher);
   }
