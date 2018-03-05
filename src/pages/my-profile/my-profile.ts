@@ -18,6 +18,11 @@ import { User } from '../../models/user';
 })
 export class MyProfilePage {
 
+  editingDisabled = true;
+
+  loading = false;
+  updated = false;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public mediaService: MediaService,
@@ -25,16 +30,53 @@ export class MyProfilePage {
   }
 
   ngOnInit() {
+    }
 
-    //Check if user has a token, after that verifies token with the API
-    const userToken = this.mediaService.userHasToken();
-      if(userToken) {
-        console.log('@my-profile: User has token: ' + userToken);
-        this.mediaService.getUserInfo(userToken)
-          .subscribe( (result: User) => {
-            console.log(result);
-            this.mediaService.userInfo = result;
-        });
+    toggleEditing() {
+      this.editingDisabled = false;
+    }
+
+    /*
+    Updates user information to the database using MediaService
+    If the user has not updated password, uses only binded values from
+    MediaService.userInfo
+    */
+    updateInfo(userInfoForm) {
+
+      this.loading = true;
+
+      if(userInfoForm.password) {
+
+        this.mediaService.updateUserInformation(userInfoForm.password)
+          .subscribe(response => {
+            console.log(response);
+
+            this.showConfirmation();
+          });
+
+      } else {
+
+        this.mediaService.updateUserInformation()
+          .subscribe(response => {
+            console.log(response);
+
+            this.showConfirmation();
+          });
       }
+    }
+
+    /*
+      Switches visible icons from 'loading' to
+      'checkmark' that is visible for 2 seconds
+    */
+    showConfirmation() {
+      this.loading = false;
+      this.updated = true;
+      this.editingDisabled = true;
+
+      //Show confirmation icon
+      setTimeout(() => {
+      this.updated = false;
+      }, 2000);
     }
   }

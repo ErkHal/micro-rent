@@ -1,6 +1,25 @@
 page-my-profile {
-  .userInfo {
-    text-align: center;
-    padding: 2rem;
+
+  ion-content {
+
+    .userInfo {
+      text-align: center;
+      padding: 2rem;
+
+      input {
+        margin: 3rem;
+      }
+
+      .icon-lg {
+        zoom:3.0;
+        font-size: 3rem;
+      }
+
+      .confirmationText {
+        padding: 0;
+        font-size: 1rem;
+      }
+    }
   }
+
 }

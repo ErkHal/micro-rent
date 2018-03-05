@@ -9,19 +9,51 @@
 
 <ion-content padding>
   <div class="userInfo" *ngIf="this.mediaService.isLoggedIn">
-    <label for="username"> Username </label>
-    <h4 id="username">
-      {{ this.mediaService.userInfo.username }}
-    </h4>
-    <br />
-    <label for="email"> Email </label>
-      <h4 id="email">
-        {{ this.mediaService.userInfo.email }}
-      </h4>
-    <br />
-    <label for="fullName"> Full Name </label>
-      <h4 id="fullName">
-        {{ this.mediaService.userInfo.full_name }}
-      </h4>
-  </div>
+    <form #userInfoForm="ngForm">
+
+      <button ion-button
+       color="danger"
+       (click)="toggleEditing()"
+       class="btn btn-success"
+       [disabled]="!this.editingDisabled">
+                    Edit information
+      </button>
+      <div class="form-group">
+        <br>
+        <ion-input class="form-control" type="text"
+                [(ngModel)]="this.mediaService.userInfo.username"
+                name="username" #title="ngModel"
+                [disabled]="this.editingDisabled">
+        </ion-input>
+        <br>
+        <ion-input class="form-control" type="email"
+                [(ngModel)]="this.mediaService.userInfo.email"
+                #name="ngModel"
+                name="email"
+                [disabled]="this.editingDisabled">
+        </ion-input>
+        <br>
+        <ion-input class="form-control" type="password"
+                [(ngModel)]="userInfoForm.password"
+                placeholder="Type new password" #name="ngModel"
+                name="password"
+                [disabled]="this.editingDisabled">
+        </ion-input>
+      <!-- Loading icon, appears when create button is pressed -->
+      <div class="icon-lg"  *ngIf="this.loading">
+        <ion-spinner name="dots" color="primary"></ion-spinner>
+      </div>
+      <!-- Confirmation icon and text, appears when information is updated -->
+      <div class="icon-lg" *ngIf="this.updated">
+        <ion-icon color="primary" name="checkmark"></ion-icon>
+        <p class="confirmationText">Information updated</p>
+      </div>
+      <br>
+      <button ion-button (click)="updateInfo(userInfoForm)"
+       class="btn btn-success">
+                    Save information
+      </button>
+    </div>
+  </form>
+</div>
 </ion-content>

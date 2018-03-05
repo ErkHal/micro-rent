@@ -23,7 +23,7 @@ export class HomePage {
 
     //Displays splash screen unless it's already displayed once.
     if(sessionStorage.getItem('splashDisplayed') != 'true') {
-      setTimeout(() => this.splash = false, 4000);
+      setTimeout(() => this.splash = false, 2000);
       sessionStorage.setItem('splashDisplayed', 'true');
     } else {
       this.splash = false;

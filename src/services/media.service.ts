@@ -78,8 +78,34 @@ export class MediaService {
     const reqSettings = {
       headers: new HttpHeaders().set('x-access-token', token)
     };
+
     return this.http.get(this.rootUrl + 'users/user', reqSettings)
     }
+
+
+  /*
+  Updates the user information, updates password if its passed
+  as a parameter.
+  */
+  updateUserInformation(updatedPasswd?) {
+
+    //Get token from Local Storage
+    const reqSettings = {
+      headers: new HttpHeaders().set(
+        'x-access-token', localStorage.getItem('token')
+      )
+    };
+
+    //Get email and username
+    let updatedUserInfo = this.userInfo;
+
+    //Get new password if given
+    if(updatedPasswd) {
+      updatedUserInfo.password = updatedPasswd;
+    }
+
+    return this.http.put(this.rootUrl + 'users', updatedUserInfo, reqSettings);
+  }
 
   //Gets the renter's information with id
   getContactInformation(id: number) {
