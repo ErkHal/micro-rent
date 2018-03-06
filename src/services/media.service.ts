@@ -33,6 +33,17 @@ export class MediaService {
       });
   }
 
+
+  tagPicture(tagi) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+
+    return this.http.post(this.rootUrl + 'tags', tagi, reqSettings);
+
+  }
+
   //Uploads new media to server
   upload(formData: FormData) {
 
@@ -51,7 +62,7 @@ export class MediaService {
 
   //Returns all listings from the API
   getAllListings() {
-    return this.http.get(this.rootUrl + 'media');
+  return this.http.get(this.rootUrl + 'tags/microrent');
   }
 
   //Get listingsof a single user

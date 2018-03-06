@@ -108,6 +108,19 @@ export class UploadPage implements OnInit {
 
     this.mediaService.upload(encodedForm).subscribe( result => {
       console.log('Media uploaded');
+
+      let photoID = result["file_id"];
+      console.log(photoID);
+      let tag = {
+        file_id: photoID,
+        tag: 'microrent'
+      };
+
+      this.mediaService.tagPicture(tag)
+        .subscribe(response => {
+          console.log(response);
+        });
+
       this.loading = true;
       this.navCtrl.setRoot(HomePage);
       //this.loading = false;
