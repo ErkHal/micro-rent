@@ -11,12 +11,16 @@ export class MediaService {
 
   isLoggedIn = false;
 
+  myListing = false;
+
   userInfo: User;
 
   rootUrl = 'http://media.mw.metropolia.fi/wbma/';
 
   constructor(private http: HttpClient,
               private storage: Storage) { }
+
+
 
   //Register a new user
   register(newUser: User) {
@@ -75,6 +79,14 @@ export class MediaService {
   getSingleListing(file_id: number) {
     console.log('fetching media with id: ' + file_id);
     return this.http.get(this.rootUrl + 'media/' + file_id);
+  }
+  deleteListing(id) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+
+      return this.http.delete(this.rootUrl + 'media/' + id, reqSettings);
   }
 
   //Logout user

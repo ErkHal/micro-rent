@@ -41,7 +41,7 @@ export class RegisterPage {
 
 
     }, err => {
-      console.log('errorororor');
+      console.log('error');
 
     });
 

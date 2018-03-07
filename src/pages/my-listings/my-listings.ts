@@ -23,8 +23,7 @@ export class MyListingsPage {
               public mediaService: MediaService) {
   }
 
-  ngOnInit() {
-
+  ionViewWillEnter() {
     this.mediaService.getUserListings(this.mediaService.userInfo.user_id)
       .subscribe( result => {
         console.log('got listings !');
@@ -37,9 +36,6 @@ export class MyListingsPage {
         console.log(err);
         this.userListings = null;
       })
-  }
-
-  ionViewDidLoad() {
   }
 
 }
