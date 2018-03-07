@@ -37,6 +37,22 @@ export class MediaService {
       });
   }
 
+  //Searches listing's both title AND description for the given searchword
+  searchListings(searchword: string) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+
+    const reqBody = {
+      title: searchword,
+      description: searchword
+    }
+
+    return this.http.post(this.rootUrl + 'media/search', reqBody, reqSettings);
+
+  }
+
 
   tagPicture(tagi) {
 

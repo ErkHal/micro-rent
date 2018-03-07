@@ -13,11 +13,13 @@ export class HomePage {
 
   splash = true;
 
+  searchBarVisible = false;
+
   constructor(public navCtrl: NavController, private mediaService: MediaService) {
 
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
 
     this.loadContent();
 
@@ -30,11 +32,27 @@ export class HomePage {
     }
   }
 
+  toggleSearchBar() {
+    this.searchBarVisible = !this.searchBarVisible;
+  }
+
+  onInput(event) {
+    console.log(event);
+
+    this.mediaService.searchListings(event.data)
+      .subscribe((response: Listing[]) =>{
+        console.log(response);
+        this.listings = response;
+      });
+  }
+
   //Fetches newest content from API
   loadContent(refresher?: any) {
     this.mediaService.getAllListings()
     .subscribe( (listingsArr: Listing[]) => {
-      this.listings = listingsArr;
+
+      //Reverse results because result is from oldest no newest for some reason
+      this.listings = listingsArr.reverse();
 
       //If called from refresh, complete async operation
       if(refresher) {

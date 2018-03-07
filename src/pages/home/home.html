@@ -10,11 +10,26 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Home
+       <ion-icon
+          *ngIf="this.mediaService.isLoggedIn"
+          (click)="toggleSearchBar()"
+          class="icon-right"
+          name="search">
+       </ion-icon>
+    </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
+  <div *ngIf="searchBarVisible">
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      debounce="750"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  </div>
+
   <ion-refresher (ionRefresh)="refreshHome($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
