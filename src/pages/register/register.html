@@ -24,17 +24,19 @@
                   class="centered" ion-item
                   type="password" placeholder="*******" required/>
           <br />
-          <input class="form-control" [(ngModel)]="this.register.password" name="password"
-                  class="centered" ion-item
-                  type="password" placeholder="*******" required/>
-          <br />
-          <input class="form-control" [(ngModel)]="this.register.email" name="email"
-                    class="centered" ion-item
-                    type="email" placeholder="email@example.fi"/>
+          <input class="form-control" [(ngModel)]="this.register.email"
+              name="email"
+              class="centered" ion-item
+              type="email" placeholder="email@example.fi" required/>
             <br />
+            <input class="form-control" [(ngModel)]="this.register.full_name"
+              name="full_name"
+              class="centered" ion-item
+              type="email" placeholder="Full Name (Optional)" >
+              <br />
             </div>
           <button class="centered" ion-button color="menu-new-listing"
-                  (click)="this.mediaService.register(this.register)">
+                  (click)="this.mediaService.register(this.register); this.goBack();">
             Register
           </button>
         </form>

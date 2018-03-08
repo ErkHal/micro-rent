@@ -96,6 +96,7 @@ export class MediaService {
     console.log('fetching media with id: ' + file_id);
     return this.http.get(this.rootUrl + 'media/' + file_id);
   }
+  
   deleteListing(id) {
 
     const reqSettings = {

@@ -23,15 +23,15 @@
       <h4>
         {{ (this.listingInfo.description | description) }}
       </h4>
-      <div *ngIf="this.mediaService.isLoggedIn && !this.mediaService.myListing">
+      <div class="listingBtn" *ngIf="this.mediaService.isLoggedIn && !this.mediaService.myListing">
         <button (click)="openEmailApp()" ion-button clear small color="primary" icon-start>
-           <ion-icon class="icon-md" name='checkbox-outline'></ion-icon>
-           I need this
+           <ion-icon class="icon-md" name='mail'></ion-icon>
+           Contact Owner
         </button>
       </div>
-      <div *ngIf="this.mediaService.isLoggedIn && this.mediaService.myListing">
+      <div class="listingBtn" *ngIf="this.mediaService.isLoggedIn && this.mediaService.myListing">
           <ion-icon (click)="showAlert()" name="close" color="danger"></ion-icon>
-          <p>delete this item</p>
+          <p>Delete this item</p>
       </div>
       <div *ngIf="!this.mediaService.isLoggedIn">
         <p color="alert" class="loginMessage">

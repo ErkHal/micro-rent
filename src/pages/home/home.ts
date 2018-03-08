@@ -32,10 +32,12 @@ export class HomePage {
     }
   }
 
+  //Toggle visibility of search bar
   toggleSearchBar() {
     this.searchBarVisible = !this.searchBarVisible;
   }
 
+  //Retrieve search results from MediaService
   onInput(event) {
     console.log(event);
 

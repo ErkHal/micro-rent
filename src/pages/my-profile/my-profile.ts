@@ -18,10 +18,12 @@ import { User } from '../../models/user';
 })
 export class MyProfilePage {
 
-  editingDisabled = true;
+  canEdit = false;
 
   loading = false;
   updated = false;
+
+  backupProfileInfo: User;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -32,9 +34,17 @@ export class MyProfilePage {
   ngOnInit() {
     }
 
-    toggleEditing() {
-      this.editingDisabled = false;
-    }
+  //Allow editing and save previous info
+  allowEditing() {
+    this.canEdit = true;
+    this.backupProfileInfo = Object.assign({}, this.mediaService.userInfo);
+  }
+
+  //Reset user information
+  resetInformation() {
+    this.canEdit = false;
+    this.mediaService.userInfo = this.backupProfileInfo;
+  }
 
     /*
     Updates user information to the database using MediaService
@@ -43,6 +53,7 @@ export class MyProfilePage {
     */
     updateInfo(userInfoForm) {
 
+      this.canEdit = false;
       this.loading = true;
 
       if(userInfoForm.password) {
@@ -52,6 +63,7 @@ export class MyProfilePage {
             console.log(response);
 
             this.showConfirmation();
+            this.backupProfileInfo = null;
           });
 
       } else {
@@ -72,7 +84,6 @@ export class MyProfilePage {
     showConfirmation() {
       this.loading = false;
       this.updated = true;
-      this.editingDisabled = true;
 
       //Show confirmation icon
       setTimeout(() => {

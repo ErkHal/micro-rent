@@ -44,7 +44,10 @@ export class RegisterPage {
       console.log('error');
 
     });
+  }
 
+  goBack() {
+      this.navCtrl.setRoot(HomePage);
   }
 
 }

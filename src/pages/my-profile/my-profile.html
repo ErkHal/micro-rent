@@ -12,33 +12,45 @@
     <form #userInfoForm="ngForm">
 
       <button ion-button
-       color="danger"
-       (click)="toggleEditing()"
-       class="btn btn-success"
-       [disabled]="!this.editingDisabled">
-                    Edit information
+        *ngIf="!canEdit"
+        color="danger"
+        (click)="allowEditing()"
+        class="btn btn-success">
+          Edit information
+      </button>
+      <button ion-button
+        *ngIf="canEdit"
+        color="danger"
+        (click)="resetInformation()"
+        class="btn btn-success">
+          Cancel
       </button>
       <div class="form-group">
         <br>
-        <ion-input class="form-control" type="text"
-                [(ngModel)]="this.mediaService.userInfo.username"
-                name="username" #title="ngModel"
-                [disabled]="this.editingDisabled">
-        </ion-input>
+          <ion-input type="text"
+                  (click)="$event.preventDefault();"
+                  [(ngModel)]="this.mediaService.userInfo.username"
+                  name="username" #title="ngModel"
+                  [disabled]="!this.canEdit"
+                  placeholder="Username">
+          </ion-input>
         <br>
-        <ion-input class="form-control" type="email"
-                [(ngModel)]="this.mediaService.userInfo.email"
-                #name="ngModel"
-                name="email"
-                [disabled]="this.editingDisabled">
-        </ion-input>
+          <ion-input type="email"
+                  (click)="$event.preventDefault();"
+                  [(ngModel)]="this.mediaService.userInfo.email"
+                  #name="ngModel"
+                  name="email"
+                  [disabled]="!this.canEdit"
+                  placeholder="Email">
+          </ion-input>
         <br>
-        <ion-input class="form-control" type="password"
-                [(ngModel)]="userInfoForm.password"
-                placeholder="Type new password" #name="ngModel"
-                name="password"
-                [disabled]="this.editingDisabled">
-        </ion-input>
+          <ion-input type="password"
+                  (click)="$event.preventDefault();"
+                  [(ngModel)]="userInfoForm.password"
+                  placeholder="Type new password" #name="ngModel"
+                  name="password"
+                  [disabled]="!this.canEdit">
+          </ion-input>
       <!-- Loading icon, appears when create button is pressed -->
       <div class="icon-lg"  *ngIf="this.loading">
         <ion-spinner name="dots" color="primary"></ion-spinner>
@@ -49,7 +61,7 @@
         <p class="confirmationText">Information updated</p>
       </div>
       <br>
-      <button ion-button (click)="updateInfo(userInfoForm)"
+      <button *ngIf="this.canEdit" ion-button (click)="updateInfo(userInfoForm)"
        class="btn btn-success">
                     Save information
       </button>

@@ -39,7 +39,8 @@
             <br/>
             <div class="form-group">
               <ion-input class="form-control" type="text" [(ngModel)]="uploadForm.title"
-                      placeholder="Title" name="title" #title="ngModel" required>
+                      placeholder="Title" name="title" #title="ngModel"
+                      (click)="$event.preventDefault();" required>
               </ion-input>
               <div [hidden]="title.valid || title.pristine"
                     class="alert alert-danger">
@@ -48,7 +49,8 @@
               <br />
               <ion-input class="form-control" type="number" [(ngModel)]="uploadForm.price"
                       placeholder="Price(€)" #name="ngModel"
-                      name="price" required>
+                      name="price"
+                      (click)="$event.preventDefault();" required>
               </ion-input>
               <div [hidden]="title.valid || title.pristine"
                     class="alert alert-danger">
@@ -58,7 +60,8 @@
               <ion-textarea cols="25" rows="7" id="description" class="form-control"
                         type="text" [(ngModel)]="uploadForm.description"
                         placeholder="Description" #name="ngModel"
-                        name="description" required></ion-textarea>
+                        name="description"
+                        contenteditable="true" required></ion-textarea>
               <div [hidden]="title.valid || title.pristine"
                     class="alert alert-danger">
                     Description is required !
