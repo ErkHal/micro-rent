@@ -37,14 +37,27 @@ export class HomePage {
     this.searchBarVisible = !this.searchBarVisible;
   }
 
-  //Retrieve search results from MediaService
+  //Retrieve listings from API and filter them based on given parameters
   onInput(event) {
     console.log(event);
 
-    this.mediaService.searchListings(event.data)
+    this.mediaService.getAllListings()
       .subscribe((response: Listing[]) =>{
         console.log(response);
-        this.listings = response;
+
+        /*
+          Matches every listing's title OR description
+          that has the given searchword in it.
+        */
+        this.listings = response.filter( listing => {
+
+          if( listing.title.search(event.data) != -1||
+              listing.description.search(event.data) != -1) {
+
+          return listing;
+        }
+        });
+        console.log(this.listings);
       });
   }
 

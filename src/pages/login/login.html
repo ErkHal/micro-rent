@@ -23,6 +23,10 @@
                   class="centered" ion-item
                   type="password" placeholder="*******"/>
           <br />
+            <p class="alertBox" *ngIf="this.displayError">
+                Couldn't log in. Please try again.
+            </p>
+          <br />
           <button class="centered" ion-button color="menu-listings"
                   (click)="this.tryLogin(this.userCredentials)">
             Login

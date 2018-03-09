@@ -133,14 +133,11 @@ export class UploadPage implements OnInit {
 
   //Encodes pricing into the description
   encodeForm(form) {
-
-    console.log("inside encodingz");
-    console.log(form.get('price'));
-
+  
     /*
     All data to be encoded. Add more entries if you need more data
-    These entries will be appended to the front of the description
-    and separated with a pipe ( | ) symbol.
+    These entries will be appended to the JSON object in front of the
+    description and separated with a pipe ( | ) symbol.
     */
     const jsonPrice = {
       "price": form.get('price')

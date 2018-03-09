@@ -12,6 +12,8 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  displayError = false;
+
   userCredentials: User = {
     username: '',
     password: '',
@@ -25,6 +27,8 @@ export class LoginPage {
 
   tryLogin(credentials: User) {
 
+    this.displayError = false;
+
     this.mediaService.login(credentials)
       .subscribe( loginResponse => {
 
@@ -36,7 +40,7 @@ export class LoginPage {
         const userData: User = loginResponse['user'];
         this.mediaService.userInfo = userData;
       }, err => {
-        console.log('Something went very wrong. Heres why: ' + err.message);
+        this.displayError = true;
     });
   }
 }
