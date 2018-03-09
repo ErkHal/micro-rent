@@ -19,7 +19,9 @@ import { HomePage } from '../home/home';
 })
 export class RegisterPage {
   themeColor: string;
-  ermsg: string;
+  usernameMessage: string;
+
+  usernameAvailable = true;
 
   register: User = {
     username: '',
@@ -40,18 +42,19 @@ export class RegisterPage {
 
     this.mediaService.checkUserName(user).subscribe(response => {
 
-      let available = response["available"];
+      this.usernameAvailable = response["available"];
 
 
-      console.log(available);
+      console.log(this.usernameAvailable);
 
-      if (available == true) {
+      if (this.usernameAvailable == true) {
 
-        this.ermsg = 'username is available';
+        this.usernameMessage = 'Username is available';
         this.themeColor = 'primary';
 
       } else {
-        this.ermsg = 'username is already exist';
+
+        this.usernameMessage = 'Username already exists';
         this.themeColor = 'danger';
       }
     });
