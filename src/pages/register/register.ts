@@ -18,6 +18,8 @@ import { HomePage } from '../home/home';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  themeColor: string;
+  ermsg: string;
 
   register: User = {
     username: '',
@@ -28,9 +30,32 @@ export class RegisterPage {
   }
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public mediaService: MediaService,
-              private storage: Storage) { }
+    public navParams: NavParams,
+    public mediaService: MediaService,
+    private storage: Storage) { }
+
+  isAvailable(user: string) {
+
+
+
+    this.mediaService.checkUserName(user).subscribe(response => {
+
+      let available = response["available"];
+
+
+      console.log(available);
+
+      if (available == true) {
+
+        this.ermsg = 'username is available';
+        this.themeColor = 'primary';
+
+      } else {
+        this.ermsg = 'username is already exist';
+        this.themeColor = 'danger';
+      }
+    });
+}
 
   tryRegister(register: User) {
 
@@ -47,7 +72,7 @@ export class RegisterPage {
   }
 
   goBack() {
-      this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

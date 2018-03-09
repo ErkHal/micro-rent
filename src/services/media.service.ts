@@ -18,15 +18,20 @@ export class MediaService {
   rootUrl = 'http://media.mw.metropolia.fi/wbma/';
 
   constructor(private http: HttpClient,
-              private storage: Storage) { }
+    private storage: Storage) { }
 
+  //Check if username is already exist
+  checkUserName(userName: string) {
 
+    return this.http.get(this.rootUrl + 'users/username/' + userName);
+
+  }
 
   //Register a new user
   register(newUser: User) {
 
     this.http.post(this.rootUrl + 'users', newUser)
-      .subscribe( (response: RegisterResponse) => {
+      .subscribe((response: RegisterResponse) => {
         //Login user after registering
         this.login(newUser);
 
@@ -82,7 +87,7 @@ export class MediaService {
 
   //Returns all listings from the API
   getAllListings() {
-  return this.http.get(this.rootUrl + 'tags/microrent');
+    return this.http.get(this.rootUrl + 'tags/microrent');
   }
 
   //Get listingsof a single user
@@ -96,21 +101,21 @@ export class MediaService {
     console.log('fetching media with id: ' + file_id);
     return this.http.get(this.rootUrl + 'media/' + file_id);
   }
-  
+
   deleteListing(id) {
 
     const reqSettings = {
       headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
     };
 
-      return this.http.delete(this.rootUrl + 'media/' + id, reqSettings);
+    return this.http.delete(this.rootUrl + 'media/' + id, reqSettings);
   }
 
   //Logout user
   logout() {
     console.log('logging out...');
     localStorage.removeItem('token');
-}
+  }
 
   //Validates the token with the API
   getUserInfo(token) {
@@ -120,7 +125,7 @@ export class MediaService {
     };
 
     return this.http.get(this.rootUrl + 'users/user', reqSettings)
-    }
+  }
 
 
   /*
@@ -140,7 +145,7 @@ export class MediaService {
     let updatedUserInfo = this.userInfo;
 
     //Get new password if given
-    if(updatedPasswd) {
+    if (updatedPasswd) {
       updatedUserInfo.password = updatedPasswd;
     }
 
@@ -152,14 +157,14 @@ export class MediaService {
 
     const reqSettings = {
       headers: new HttpHeaders().set('x-access-token',
-                                    localStorage.getItem('token'))
+        localStorage.getItem('token'))
     };
 
     return this.http.get(this.rootUrl + 'users/' + id, reqSettings);
 
   }
 
-//Checks if the user has a token in local storage
+  //Checks if the user has a token in local storage
   userHasToken() {
     return localStorage.getItem('token');
   }

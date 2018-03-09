@@ -15,10 +15,14 @@
       <br />
       <ion-card-content>
         <form>
-          <div class="form-group">
-          <input class="form-control" [(ngModel)]="this.register.username" name="username"
-                  class="centered" ion-item
-                  type="text" placeholder="Username" required/>
+        <div class="form-group">
+        <input class="form-control" [(ngModel)]="this.register.username"
+        (change)="isAvailable(this.register.username)" name="username"
+                class="centered" ion-item
+                type="text" placeholder="Username" required>
+                <h3 ion-text [color]="themeColor"> {{ ermsg }} </h3>
+
+
           <br />
           <input class="form-control" [(ngModel)]="this.register.password" name="password"
                   class="centered" ion-item

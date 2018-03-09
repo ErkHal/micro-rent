@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaService } from "../../services/media.service";
-import {Camera, CameraOptions} from '@ionic-native/camera';
-import {File, FileEntry} from '@ionic-native/file';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { File, FileEntry } from '@ionic-native/file';
 import { NavController, NavParams } from "ionic-angular";
 import { HomePage } from "../home/home";
 
@@ -21,32 +21,42 @@ import { HomePage } from "../home/home";
   templateUrl: './upload.html'
 })
 export class UploadPage implements OnInit {
+  listingOpt: boolean;
 
   formData = new FormData();   //Upload form data is stored in this variable
-
   canUpload = false;
-
   loading = false;
-
   listingImageURL: string;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private mediaService: MediaService,
-              private camera: Camera,
-              private file: File) { }
+    public navParams: NavParams,
+    private mediaService: MediaService,
+    private camera: Camera,
+    private file: File) { }
 
   ngOnInit() {
 
     //Template doesn't show upload form if the user isn't logged in
-    if(localStorage.getItem('token')) {
-      this.mediaService.getUserInfo(localStorage.getItem('token')).subscribe( result => {
+    if (localStorage.getItem('token')) {
+      this.mediaService.getUserInfo(localStorage.getItem('token')).subscribe(result => {
         this.canUpload = true;
       }, err => {
         this.canUpload = false;
         console.log("Couldn't find legit token.");
       });
     }
+  }
+
+  checListingOption(value) {
+    console.log(value);
+    if (value = 'forRent') {
+      this.listingOpt = true;
+    } else if (value = 'wantedRent') {
+      this.listingOpt = false;
+    } else {
+      console.log('something went wrong');
+    }
+
   }
 
   takePhoto() {
@@ -64,15 +74,15 @@ export class UploadPage implements OnInit {
 
       imageData = 'data:image/jpeg;base64,' + imageData;
 
-        this.listingImageURL = imageData;
+      this.listingImageURL = imageData;
 
-        const imgBlob = this.dataURLtoBlob(imageData);
+      const imgBlob = this.dataURLtoBlob(imageData);
 
-        console.log('inside takephoto');
-        this.formData.append('file', imgBlob);
-        console.log(this.formData.get('file'));
+      console.log('inside takephoto');
+      this.formData.append('file', imgBlob);
+      console.log(this.formData.get('file'));
 
-      }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
   }
 
   //Removes photo taken by user
@@ -83,17 +93,17 @@ export class UploadPage implements OnInit {
   }
 
   dataURLtoBlob(dataURI) {
-  var byteString = atob(dataURI.split(',')[1]);
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-  var ab = new ArrayBuffer(byteString.length);
-  var ia = new Uint8Array(ab);
-  for (var i = 0; i < byteString.length; i++) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
-  }
-  var blob = new Blob([ab], {type: mimeString});
-  return blob;
+    }
+    var blob = new Blob([ab], { type: mimeString });
+    return blob;
 
-}
+  }
 
   onSubmit(uploadForm) {
 
@@ -106,7 +116,7 @@ export class UploadPage implements OnInit {
 
     const encodedForm = this.encodeForm(this.formData);
 
-    this.mediaService.upload(encodedForm).subscribe( result => {
+    this.mediaService.upload(encodedForm).subscribe(result => {
       console.log('Media uploaded');
 
       let photoID = result["file_id"];
@@ -125,11 +135,11 @@ export class UploadPage implements OnInit {
       this.navCtrl.setRoot(HomePage);
       //this.loading = false;
 
-      }, (err) => {
-        console.log('Something went wrong');
-        console.log(err);
-      });
-    }
+    }, (err) => {
+      console.log('Something went wrong');
+      console.log(err);
+    });
+  }
 
   //Encodes pricing into the description
   encodeForm(form) {
