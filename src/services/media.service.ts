@@ -42,23 +42,6 @@ export class MediaService {
       });
   }
 
-  //Searches listing's both title AND description for the given searchword
-  searchListings(searchword: string) {
-
-    const reqSettings = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
-    };
-
-    const reqBody = {
-      title: searchword,
-      description: searchword
-    }
-
-    return this.http.post(this.rootUrl + 'media/search', reqBody, reqSettings);
-
-  }
-
-
   tagPicture(tagi) {
 
     const reqSettings = {
@@ -84,6 +67,23 @@ export class MediaService {
 
     return this.http.post<LoginResponse>(this.rootUrl + 'login', userCredentials);
   }
+
+  //Searches listing's both title AND description for the given searchword
+  searchListings(searchword: string) {
+
+    const reqSettings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+
+    const reqBody = {
+      title: searchword,
+      description: searchword
+    }
+
+    return this.http.post(this.rootUrl + 'media/search', reqBody, reqSettings);
+
+  }
+
 
   //Returns all listings from the API
   getAllListings() {

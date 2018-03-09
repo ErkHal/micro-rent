@@ -1,8 +1,19 @@
+.alertBox {
+  padding: 1rem;
+  margin: 0.5rem;
+  color: color($colors, danger);
+  border: 1px solid color($colors, danger);
+}
+
 page-login {
 
   ion-card-header {
     text-align: center;
     font-size: 3rem;
+  }
+
+  .alert {
+    background-color: color($colors, danger);
   }
 
   form {

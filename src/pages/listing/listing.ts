@@ -45,7 +45,7 @@ export class ListingPage {
           this.mediaService.myListing = false;
         }
       } catch(err) {
-        
+
         this.mediaService.myListing = false;
       }
 
