@@ -5,28 +5,19 @@ import { File, FileEntry } from '@ionic-native/file';
 import { NavController, NavParams } from "ionic-angular";
 import { HomePage } from "../home/home";
 
-/*
-<input ion-button id="file" class="btn btn-default" (click)="takePhoto()"
-        [(ngModel)]="uploadForm.file"
-        type="file" name="file" #file="ngModel" required/>
-<div [hidden]="file.valid || file.pristine"
-              class="alert alert-danger">
-              File is required !
-</div>
-*/
-
-
 @Component({
   selector: 'page-upload',
   templateUrl: './upload.html'
 })
 export class UploadPage implements OnInit {
+
   listingOpt: boolean;
 
   formData = new FormData();   //Upload form data is stored in this variable
   canUpload = false;
   loading = false;
   listingImageURL: string;
+  placeHolderImg: 'www/img/munat.jpg';
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,15 +40,18 @@ export class UploadPage implements OnInit {
 
   checListingOption(value) {
     console.log(value);
-    if (value = 'forRent') {
-      this.listingOpt = true;
-    } else if (value = 'wantedRent') {
+
+    if (value == 'forRent') {
       this.listingOpt = false;
+    } else if (value == 'wantedRent') {
+      this.listingOpt = true;
     } else {
       console.log('something went wrong');
     }
-
+    console.log(this.listingOpt);
   }
+
+
 
   takePhoto() {
 
@@ -79,7 +73,7 @@ export class UploadPage implements OnInit {
       const imgBlob = this.dataURLtoBlob(imageData);
 
       console.log('inside takephoto');
-      this.formData.append('file', imgBlob);
+      this.formData.set('file', imgBlob);
       console.log(this.formData.get('file'));
 
     }).catch(err => console.log(err));
@@ -119,6 +113,9 @@ export class UploadPage implements OnInit {
     this.mediaService.upload(encodedForm).subscribe(result => {
       console.log('Media uploaded');
 
+      if (this.listingOpt) {
+        console.log('saa laittaa');
+      }
       let photoID = result["file_id"];
       console.log(photoID);
       let tag = {
@@ -143,7 +140,7 @@ export class UploadPage implements OnInit {
 
   //Encodes pricing into the description
   encodeForm(form) {
-  
+
     /*
     All data to be encoded. Add more entries if you need more data
     These entries will be appended to the JSON object in front of the

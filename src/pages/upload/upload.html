@@ -30,7 +30,7 @@
           <div *ngIf="this.listingImageURL">
             <img [src]="this.listingImageURL"/>
           </div>
-          <button *ngIf="!this.listingOpt" ion-button id="file" class="btn btn-default"
+          <button *ngIf="!this.listingOpt"  ion-button id="file" class="btn btn-default"
                   (click)="takePhoto()" [disabled]="this.listingImageURL">
                   Take photo
           </button>
