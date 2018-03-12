@@ -15,13 +15,7 @@
   </div>
   <ion-card>
 
-    <ion-item>
-
-  <ion-select (ionChange)="checListingOption(listingOption)" required placeholder="select"[(ngModel)]="listingOption">
-    <ion-option value="forRent">For rent</ion-option>
-    <ion-option value="wantedRent">Wanted to rent</ion-option>
-  </ion-select>
-</ion-item>
+    
 
     <div *ngIf="this.canUpload">
         <ion-card-title> UPLOAD </ion-card-title>
@@ -30,7 +24,7 @@
           <div *ngIf="this.listingImageURL">
             <img [src]="this.listingImageURL"/>
           </div>
-          <button *ngIf="!this.listingOpt"  ion-button id="file" class="btn btn-default"
+          <button ion-button id="file" class="btn btn-default"
                   (click)="takePhoto()" [disabled]="this.listingImageURL">
                   Take photo
           </button>

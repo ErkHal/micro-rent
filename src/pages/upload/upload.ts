@@ -17,7 +17,6 @@ export class UploadPage implements OnInit {
   canUpload = false;
   loading = false;
   listingImageURL: string;
-  placeHolderImg: 'www/img/munat.jpg';
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,20 +36,6 @@ export class UploadPage implements OnInit {
       });
     }
   }
-
-  checListingOption(value) {
-    console.log(value);
-
-    if (value == 'forRent') {
-      this.listingOpt = false;
-    } else if (value == 'wantedRent') {
-      this.listingOpt = true;
-    } else {
-      console.log('something went wrong');
-    }
-    console.log(this.listingOpt);
-  }
-
 
 
   takePhoto() {
@@ -113,9 +98,7 @@ export class UploadPage implements OnInit {
     this.mediaService.upload(encodedForm).subscribe(result => {
       console.log('Media uploaded');
 
-      if (this.listingOpt) {
-        console.log('saa laittaa');
-      }
+      //adding microrent tag to image
       let photoID = result["file_id"];
       console.log(photoID);
       let tag = {

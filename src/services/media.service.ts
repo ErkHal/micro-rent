@@ -41,7 +41,7 @@ export class MediaService {
         return err;
       });
   }
-
+  //make default tag for every image
   tagPicture(tagi) {
 
     const reqSettings = {
