@@ -67,8 +67,12 @@ export class MyApp {
     });
   }
 
+  openHomePage() {
+    this.nav.setRoot(HomePage);
+  }
+
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 
   openListing(id: string) {

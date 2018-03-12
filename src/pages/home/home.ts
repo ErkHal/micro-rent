@@ -91,6 +91,6 @@ export class HomePage {
   }
 
   toUploadPage(){
-    this.navCtrl.setRoot(UploadPage);
+    this.navCtrl.push(UploadPage);
   }
 }

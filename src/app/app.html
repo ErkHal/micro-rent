@@ -7,7 +7,7 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item no-lines class="item-borderless" color="menu-home" (click)="openPage(this.homePage)">
+      <button menuClose ion-item no-lines class="item-borderless" color="menu-home" (click)="openHomePage()">
         <ion-icon name="home"></ion-icon> Home
       </button>
        <div *ngIf="!this.mediaService.isLoggedIn">

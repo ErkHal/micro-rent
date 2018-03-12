@@ -40,6 +40,6 @@ export class MyListingsPage {
   }
 
   toUploadPage(){
-    this.navCtrl.setRoot(UploadPage);
+    this.navCtrl.push(UploadPage);
   }
 }
