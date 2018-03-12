@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
+import {UploadPage} from '../upload/upload';
 
 /**
  * Generated class for the MyListingsPage page.
@@ -38,4 +39,7 @@ export class MyListingsPage {
       })
   }
 
+  toUploadPage(){
+    this.navCtrl.setRoot(UploadPage);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
 import { Listing } from "../../models/listing";
+import { UploadPage } from "../upload/upload";
 
 @Component({
   selector: 'page-home',
@@ -47,7 +48,7 @@ export class HomePage {
 
         /*
           Matches every listing's title OR description
-          that has the given searchword in it.
+          that has the given search word in it.
         */
         this.listings = response.filter( listing => {
 
@@ -80,5 +81,9 @@ export class HomePage {
   //Fired when user swipes down to refresh home page
   refreshHome(refresher) {
     this.loadContent(refresher);
+  }
+
+  toUploadPage(){
+    this.navCtrl.setRoot(UploadPage);
   }
 }

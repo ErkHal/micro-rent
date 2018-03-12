@@ -30,6 +30,12 @@
     </ion-searchbar>
   </div>
 
+  <ion-fab bottom left *ngIf="this.mediaService.isLoggedIn">
+    <button id="floatButton" ion-fab color="menu-home" (click)="toUploadPage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
   <ion-refresher (ionRefresh)="refreshHome($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
