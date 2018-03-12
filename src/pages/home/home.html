@@ -30,8 +30,8 @@
     </ion-searchbar>
   </div>
 
-  <ion-fab bottom right *ngIf="this.mediaService.isLoggedIn">
-    <button id="floatButton" ion-fab color="menu-home" (click)="toUploadPage()">
+  <ion-fab class="floatButton" bottom right *ngIf="this.mediaService.isLoggedIn">
+    <button ion-fab color="menu-home" (click)="toUploadPage()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
