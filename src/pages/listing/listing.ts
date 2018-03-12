@@ -33,21 +33,20 @@ export class ListingPage {
         console.log(result);
         this.listingInfo = result;
 
-        console.log('juuseri: ' + result['user_id']);
 
         try {
-        if (result['user_id'] == this.mediaService.userInfo.user_id) {
+          if (result['user_id'] == this.mediaService.userInfo.user_id) {
 
-          this.mediaService.myListing = true;
+            this.mediaService.myListing = true;
 
-        } else {
-          console.log('not my listing')
+          } else {
+            console.log('not my listing')
+            this.mediaService.myListing = false;
+          }
+        } catch (err) {
+
           this.mediaService.myListing = false;
         }
-      } catch(err) {
-
-        this.mediaService.myListing = false;
-      }
 
         //Get the renter's contact information as well if user is logged in
         console.log('User is logged in: ' + this.mediaService.isLoggedIn)
@@ -75,22 +74,23 @@ export class ListingPage {
         this.navCtrl.pop();
       });
   }
-
+  //confirm deleting
   showAlert() {
     let confirm = this.alertCtrl.create({
       title: 'Delete',
       subTitle: 'Are you sure you want to delete this listing?',
       buttons: [
         {
-          text: 'Yes',
+          text: 'no',
           handler: () => {
-            this.deleteListing();
+            console.log('NO clicked');
           }
         },
         {
-          text: 'No',
+          text: 'Yes',
           handler: () => {
-            console.log('NO clicked');
+            this.deleteListing();
+
           }
         }
       ]
