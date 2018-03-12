@@ -20,9 +20,18 @@
         (change)="isAvailable(this.register.username)" name="username"
                 class="centered" ion-item
                 type="text" placeholder="Username" required>
-                <h3 ion-text [color]="themeColor"> {{ ermsg }} </h3>
-
-
+                <br/>
+                <div *ngIf="!this.usernameAvailable">
+                  <p ion-text class="alertBox" [color]="themeColor">
+                      {{ usernameMessage }}
+                  </p>
+                </div>
+                <div *ngIf="this.usernameAvailable">
+                  <h3 ion-text
+                      [color]="themeColor">
+                      {{ usernameMessage }}
+                  </h3>
+                </div>
           <br />
           <input class="form-control" [(ngModel)]="this.register.password" name="password"
                   class="centered" ion-item

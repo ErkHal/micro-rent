@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
 import { Listing } from "../../models/listing";
+import { UploadPage } from "../upload/upload";
 
 @Component({
   selector: 'page-home',
@@ -35,6 +36,10 @@ export class HomePage {
   //Toggle visibility of search bar
   toggleSearchBar() {
     this.searchBarVisible = !this.searchBarVisible;
+
+    if(!this.searchBarVisible) {
+      this.loadContent();
+    }
   }
 
   //Retrieve listings from API and filter them based on given parameters
@@ -45,20 +50,23 @@ export class HomePage {
       .subscribe((response: Listing[]) =>{
         console.log(response);
 
+        if(event.data === null || event.data === undefined) {
+          this.loadContent();
+        } else {
         /*
           Matches every listing's title OR description
-          that has the given searchword in it.
+          that has the given search word in it.
         */
-        this.listings = response.filter( listing => {
+        this.listings = response.filter((listing: Listing) => {
 
-          if( listing.title.search(event.data) != -1||
-              listing.description.search(event.data) != -1) {
+          if(listing.title.toLowerCase().search(event.data.toLowerCase()) != -1 ||
+             listing.description.toLowerCase().search(event.data.toLowerCase()) != -1) {
 
           return listing;
-        }
-        });
-        console.log(this.listings);
-      });
+          }
+        }).reverse();
+      }
+    });
   }
 
   //Fetches newest content from API
@@ -80,5 +88,9 @@ export class HomePage {
   //Fired when user swipes down to refresh home page
   refreshHome(refresher) {
     this.loadContent(refresher);
+  }
+
+  toUploadPage(){
+    this.navCtrl.setRoot(UploadPage);
   }
 }
