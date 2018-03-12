@@ -25,12 +25,12 @@ export class ListingPage {
   }
 
   ngOnInit() {
-    console.log(this.navParams.get('id'));
+    //console.log(this.navParams.get('id'));
 
     //Retrieve all listing information using the id
     this.mediaService.getSingleListing(this.navParams.get('id'))
       .subscribe(result => {
-        console.log(result);
+        //console.log(result);
         this.listingInfo = result;
 
 
@@ -40,7 +40,7 @@ export class ListingPage {
             this.mediaService.myListing = true;
 
           } else {
-            console.log('not my listing')
+            //console.log('not my listing')
             this.mediaService.myListing = false;
           }
         } catch (err) {
@@ -49,19 +49,19 @@ export class ListingPage {
         }
 
         //Get the renter's contact information as well if user is logged in
-        console.log('User is logged in: ' + this.mediaService.isLoggedIn)
+        //console.log('User is logged in: ' + this.mediaService.isLoggedIn)
         if (this.mediaService.isLoggedIn) {
           this.mediaService.getContactInformation(this.listingInfo.user_id)
             .subscribe(result => {
               this.userInfo = result;
             }, err => {
-              console.log('you fucked something up young padawan');
+              //console.log('you fucked something up young padawan');
               console.log(err)
             });
         }
 
       }, err => {
-        console.log('you fucked something up young padawan');
+        //console.log('you fucked something up young padawan');
         console.log(err)
       })
   }
@@ -70,7 +70,7 @@ export class ListingPage {
 
     this.mediaService.deleteListing(this.listingInfo.file_id)
       .subscribe(result => {
-        console.log(result);
+        //console.log(result);
         this.navCtrl.pop();
       });
   }
@@ -83,7 +83,7 @@ export class ListingPage {
         {
           text: 'no',
           handler: () => {
-            console.log('NO clicked');
+            //console.log('NO clicked');
           }
         },
         {
@@ -125,8 +125,8 @@ export class ListingPage {
       this.emailComposer.open(email);
 
     }, err => {
-      console.log("Didn't find contact information with id: "
-        + this.listingInfo.user_id);
+        console.log("Didn't find contact information with id: "
+          + this.listingInfo.user_id);
     });
   }
 }

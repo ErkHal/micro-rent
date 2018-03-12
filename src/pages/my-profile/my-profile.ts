@@ -60,7 +60,7 @@ export class MyProfilePage {
 
         this.mediaService.updateUserInformation(userInfoForm.password)
           .subscribe(response => {
-            console.log(response);
+            //console.log(response);
 
             this.showConfirmation();
             this.backupProfileInfo = null;
@@ -70,7 +70,7 @@ export class MyProfilePage {
 
         this.mediaService.updateUserInformation()
           .subscribe(response => {
-            console.log(response);
+            //console.log(response);
 
             this.showConfirmation();
           });

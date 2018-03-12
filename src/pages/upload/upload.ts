@@ -32,7 +32,7 @@ export class UploadPage implements OnInit {
         this.canUpload = true;
       }, err => {
         this.canUpload = false;
-        console.log("Couldn't find legit token.");
+        //console.log("Couldn't find legit token.");
       });
     }
   }
@@ -57,9 +57,9 @@ export class UploadPage implements OnInit {
 
       const imgBlob = this.dataURLtoBlob(imageData);
 
-      console.log('inside takephoto');
+      //console.log('inside takephoto');
       this.formData.set('file', imgBlob);
-      console.log(this.formData.get('file'));
+      //console.log(this.formData.get('file'));
 
     }).catch(err => console.log(err));
   }
@@ -68,7 +68,7 @@ export class UploadPage implements OnInit {
   removePhoto() {
     this.listingImageURL = "";
     this.formData.delete('file');
-    console.log(this.formData.get('file'));
+    //console.log(this.formData.get('file'));
   }
 
   dataURLtoBlob(dataURI) {
@@ -86,7 +86,7 @@ export class UploadPage implements OnInit {
 
   onSubmit(uploadForm) {
 
-    console.log(this.formData.get('file'));
+    //console.log(this.formData.get('file'));
     this.formData.append('title', uploadForm.title);
     this.formData.append('description', uploadForm.description);
     this.formData.append('price', uploadForm.price);
@@ -96,11 +96,11 @@ export class UploadPage implements OnInit {
     const encodedForm = this.encodeForm(this.formData);
 
     this.mediaService.upload(encodedForm).subscribe(result => {
-      console.log('Media uploaded');
+      //console.log('Media uploaded');
 
       //adding microrent tag to image
       let photoID = result["file_id"];
-      console.log(photoID);
+      //console.log(photoID);
       let tag = {
         file_id: photoID,
         tag: 'microrent'
@@ -108,7 +108,7 @@ export class UploadPage implements OnInit {
 
       this.mediaService.tagPicture(tag)
         .subscribe(response => {
-          console.log(response);
+          //console.log(response);
         });
 
       this.loading = true;
@@ -116,7 +116,7 @@ export class UploadPage implements OnInit {
       //this.loading = false;
 
     }, (err) => {
-      console.log('Something went wrong');
+      //console.log('Something went wrong');
       console.log(err);
     });
   }

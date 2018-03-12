@@ -32,7 +32,7 @@ export class LoginPage {
     this.mediaService.login(credentials)
       .subscribe( loginResponse => {
 
-        console.log('User logged in');
+        //console.log('User logged in');
         localStorage.setItem('token', loginResponse.token);
         this.navCtrl.setRoot(HomePage);
         this.mediaService.isLoggedIn = true;

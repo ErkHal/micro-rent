@@ -45,7 +45,7 @@ export class RegisterPage {
       this.usernameAvailable = response["available"];
 
 
-      console.log(this.usernameAvailable);
+      //console.log(this.usernameAvailable);
 
       if (this.usernameAvailable == true) {
 
@@ -64,12 +64,12 @@ export class RegisterPage {
 
     this.mediaService.login(register).subscribe(response => {
 
-      console.log('registered');
+      //console.log('registered');
       this.navCtrl.setRoot(HomePage);
 
 
     }, err => {
-      console.log('error');
+      console.log(err);
 
     });
   }

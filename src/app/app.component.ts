@@ -58,7 +58,7 @@ export class MyApp {
 
       this.mediaService.getUserInfo(this.mediaService.userHasToken())
         .subscribe((response: User) => {
-          console.log(response)
+          //console.log(response)
           this.mediaService.userInfo = response;
           this.mediaService.isLoggedIn = true;
         }, err => {

@@ -44,11 +44,11 @@ export class HomePage {
 
   //Retrieve listings from API and filter them based on given parameters
   onInput(event) {
-    console.log(event);
+    //console.log(event);
 
     this.mediaService.getAllListings()
       .subscribe((response: Listing[]) =>{
-        console.log(response);
+        //console.log(response);
 
         if(event.data === null || event.data === undefined) {
           this.loadContent();
@@ -79,7 +79,7 @@ export class HomePage {
 
       //If called from refresh, complete async operation
       if(refresher) {
-        console.log('refresh');
+        //console.log('refresh');
         refresher.complete();
       }
     });

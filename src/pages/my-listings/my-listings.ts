@@ -27,7 +27,7 @@ export class MyListingsPage {
   ionViewWillEnter() {
     this.mediaService.getUserListings(this.mediaService.userInfo.user_id)
       .subscribe( result => {
-        console.log('got listings !');
+        //console.log('got listings !');
         if(result['length'] >= 1) {
           this.userListings = result;
         } else {
