@@ -4,6 +4,7 @@ import { User } from "../../models/user";
 import { MediaService } from "../../services/media.service";
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
+import {RegisterPage} from '../register/register';
 
 @IonicPage()
 @Component({
@@ -42,5 +43,9 @@ export class LoginPage {
       }, err => {
         this.displayError = true;
     });
+  }
+
+  toRegister(){
+    this.navCtrl.push(RegisterPage);
   }
 }

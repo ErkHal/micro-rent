@@ -132,7 +132,7 @@ export class ListingPage {
     });
   }
 
-  toSignIn(){
+  toLogIn(){
     this.navCtrl.push(LoginPage);
   }
 }
