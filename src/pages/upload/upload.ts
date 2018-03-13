@@ -26,6 +26,8 @@ export class UploadPage implements OnInit {
 
   ngOnInit() {
 
+    this.loading = false;
+
     //Template doesn't show upload form if the user isn't logged in
     if (localStorage.getItem('token')) {
       this.mediaService.getUserInfo(localStorage.getItem('token')).subscribe(result => {
@@ -86,7 +88,8 @@ export class UploadPage implements OnInit {
 
   onSubmit(uploadForm) {
 
-    //console.log(this.formData.get('file'));
+    this.loading = true;
+
     this.formData.append('title', uploadForm.title);
     this.formData.append('description', uploadForm.description);
     this.formData.append('price', uploadForm.price);
@@ -111,7 +114,6 @@ export class UploadPage implements OnInit {
           //console.log(response);
         });
 
-      this.loading = true;
       this.navCtrl.setRoot(HomePage);
       //this.loading = false;
 
