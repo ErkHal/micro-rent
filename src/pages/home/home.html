@@ -12,17 +12,18 @@
     </button>
     <ion-title>Home
        <ion-icon
-          *ngIf="this.mediaService.isLoggedIn"
           (click)="toggleSearchBar()"
           class="icon-right"
-          name="search">
+          name="search" >
        </ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <div *ngIf="searchBarVisible">
-    <ion-searchbar
+    <ion-searchbar #search
+      name="search"
+      id="search"
       [(ngModel)]="myInput"
       debounce="750"
       (ionInput)="onInput($event)"
@@ -36,7 +37,7 @@
     </button>
   </ion-fab>
 
-  <ion-refresher (ionRefresh)="refreshHome($event)">
+  <ion-refresher (ionRefresh)="loadContent($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid>

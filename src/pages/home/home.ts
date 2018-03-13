@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MediaService } from "../../services/media.service";
 import { Listing } from "../../models/listing";
@@ -15,6 +15,8 @@ export class HomePage {
   splash = true;
 
   searchBarVisible = false;
+
+  @ViewChild('search') searchBar;
 
   constructor(public navCtrl: NavController, private mediaService: MediaService) {
 
@@ -39,6 +41,11 @@ export class HomePage {
 
     if(!this.searchBarVisible) {
       this.loadContent();
+    } else {
+      console.log(this.searchBar);
+      setTimeout(() => {
+      this.searchBar.setFocus();
+    },150);
     }
   }
 
@@ -79,15 +86,11 @@ export class HomePage {
 
       //If called from refresh, complete async operation
       if(refresher) {
-        //console.log('refresh');
+        setTimeout(() => {
         refresher.complete();
+      }, 1000);
       }
     });
-  }
-
-  //Fired when user swipes down to refresh home page
-  refreshHome(refresher) {
-    this.loadContent(refresher);
   }
 
   toUploadPage(){

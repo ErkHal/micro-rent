@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="refreshPage($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
 <div *ngIf="!this.userListings">
   <p>

@@ -16,11 +16,11 @@
       <ion-card-content>
         <form>
           <input [(ngModel)]="this.userCredentials.username" name="username"
-                  class="centered" ion-item
+                  class="centered loginCreds" ion-item
                   type="text" placeholder="Username"/>
           <br />
           <input [(ngModel)]="this.userCredentials.password" name="password"
-                  class="centered" ion-item
+                  class="centered loginCreds" ion-item
                   type="password" placeholder="*******"/>
           <br />
             <p class="alertBox" *ngIf="this.displayError">
@@ -35,7 +35,7 @@
 
           <div id="toRegister">
           <button ion-button outline (click)="toRegister()">
-            Or register
+            Or Register
           </button>
           </div>
 

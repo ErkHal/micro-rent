@@ -5,6 +5,11 @@
   border: 1px solid color($colors, danger);
 }
 
+.loginCreds {
+  border: 1px solid gray;
+  padding-left: 0;
+}
+
 page-login {
 
   ion-card-header {

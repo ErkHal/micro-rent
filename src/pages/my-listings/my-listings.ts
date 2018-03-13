@@ -25,6 +25,10 @@ export class MyListingsPage {
   }
 
   ionViewWillEnter() {
+    this.refreshPage();
+  }
+
+  refreshPage(refresher?)  {
     this.mediaService.getUserListings(this.mediaService.userInfo.user_id)
       .subscribe( result => {
         //console.log('got listings !');
@@ -36,7 +40,13 @@ export class MyListingsPage {
       }, err => {
         console.log(err);
         this.userListings = null;
-      })
+      });
+
+      if(refresher) {
+        setTimeout(() => {
+        refresher.complete();
+      }, 1000);
+      }
   }
 
   toUploadPage(){
