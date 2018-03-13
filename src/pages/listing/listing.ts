@@ -4,6 +4,8 @@ import { MediaService } from "../../services/media.service";
 import { EmailComposer } from "@ionic-native/email-composer";
 import { User } from "../../models/user";
 
+import {LoginPage} from '../login/login';
+
 @IonicPage()
 @Component({
   selector: 'page-listing',
@@ -128,5 +130,9 @@ export class ListingPage {
         console.log("Didn't find contact information with id: "
           + this.listingInfo.user_id);
     });
+  }
+
+  toSignIn(){
+    this.navCtrl.push(LoginPage);
   }
 }

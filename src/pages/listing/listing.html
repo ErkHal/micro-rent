@@ -35,9 +35,11 @@
       </div>
       <div *ngIf="!this.mediaService.isLoggedIn">
         <br/>
-        <p class="alertBox">
+
+        <button id="toSignIn" ion-button color="danger" outline (click)="toSignIn()">
           Please log in to get contact information !
-        </p>
+        </button>
+
       </div>
     </ion-card-content>
   </ion-card>
